@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Entropy in the Stock Market: Gautam Kumaran</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/><style>
+:root{--bg:#131315;--panel:#0f1b2d;--line:#2f3743;--text:#fff;--muted:#c5c6cd;--muted-2:#8f9097;--primary:#b9c7e4;--primary-container:#0a192f;--success:#10b981;--warning:#f59e0b}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;padding-top:64px;background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}h1,h2,h3{font-family:'Outfit',sans-serif;font-weight:600;letter-spacing:-.01em;margin:0}.mono{font-family:'JetBrains Mono',monospace}a{color:inherit}.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+nav{position:fixed;top:0;left:0;width:100%;z-index:50;background:rgba(10,25,47,.86);backdrop-filter:blur(12px);border-bottom:1px solid rgba(68,71,77,.3)}nav .wrap{height:64px;display:flex;align-items:center;justify-content:space-between}.brand{font-family:'Outfit',sans-serif;font-weight:700;font-size:24px;color:#fff;text-decoration:none}.navlinks{display:flex;gap:32px;align-items:center;font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--muted)}.navlinks a{text-decoration:none;transition:color .2s}.navlinks a:hover{color:var(--primary)}
+header.hero{padding:80px 0 64px;border-bottom:1px solid rgba(68,71,77,.25);background:linear-gradient(180deg,rgba(10,25,47,.16),rgba(19,19,21,0))}.eyebrow-row{display:flex;align-items:center;gap:12px;margin-bottom:18px;flex-wrap:wrap}.eyebrow{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--primary)}.status-pill{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--success);border:1px solid rgba(16,185,129,.35);background:rgba(16,185,129,.12);padding:4px 9px;border-radius:4px}h1.title{font-family:'Outfit',sans-serif;font-size:clamp(38px,5vw,56px);line-height:1.08;max-width:17ch;color:#fff}.dek{color:var(--muted);font-size:18px;max-width:64ch;margin-top:20px}.hero-actions{display:flex;gap:14px;margin-top:28px;flex-wrap:wrap}.btn{font-family:'Inter',sans-serif;font-size:14px;font-weight:600;text-decoration:none;padding:12px 18px;border-radius:4px;display:inline-flex;align-items:center;gap:8px;transition:opacity .2s,background .2s,border-color .2s}.btn-primary{background:#fff;color:var(--primary-container)}.btn-primary:hover{opacity:.9}.btn-ghost{border:1px solid var(--line);color:#fff;background:transparent}.btn-ghost:hover{background:rgba(255,255,255,.04);border-color:var(--primary)}
+section{padding:64px 0;border-bottom:1px solid rgba(68,71,77,.2)}section:nth-of-type(even){background:#0e0e10}.kicker{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--primary);margin-bottom:12px}h2.sec-title{font-family:'Outfit',sans-serif;font-size:clamp(26px,3vw,34px);max-width:26ch;margin-bottom:14px;color:#fff}.sec-sub{color:var(--muted);max-width:68ch;font-size:16px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:36px}.card,.panel{background:rgba(10,25,47,.58);border:1px solid rgba(68,71,77,.42);border-radius:8px}.card{padding:28px}.card h3{font-family:'Outfit',sans-serif;font-size:20px;margin-bottom:10px;color:#fff}.card p{color:var(--muted);font-size:14.5px;margin:0}.card ul{margin:12px 0 0;padding-left:18px;color:var(--muted);font-size:14px}.card ul li{margin-bottom:5px}
+.method-list{margin-top:40px;display:flex;flex-direction:column}.method-row{display:grid;grid-template-columns:60px 1fr;gap:22px;padding:28px 0;border-top:1px solid rgba(68,71,77,.35)}.method-row:last-child{border-bottom:1px solid rgba(68,71,77,.35)}.method-num{font-family:'JetBrains Mono',monospace;color:var(--primary);font-size:13px;padding-top:3px}.method-row h3{font-family:'Outfit',sans-serif;font-size:20px;margin-bottom:8px;color:#fff}.method-row p{color:var(--muted);font-size:14.5px;max-width:74ch;margin:0}.method-tag{display:inline-block;margin-top:12px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--warning);background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.3);padding:4px 9px;border-radius:4px}
+.statband{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:8px;overflow:hidden;margin-top:40px}.stat{background:var(--primary-container);padding:26px 22px}.stat .num{font-family:'Outfit',sans-serif;font-size:30px;color:var(--primary);font-weight:600}.stat .lbl{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);margin-top:7px}
+.result-block{margin-top:48px}.result-block:first-child{margin-top:40px}.result-head{margin-bottom:14px}.result-head h3{font-family:'Outfit',sans-serif;font-size:21px;color:#fff}.fig-tag{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted-2);display:block;margin-top:4px}.panel{padding:28px}.panel p{color:var(--muted);font-size:14.5px;margin:0 0 10px}.panel p:last-child{margin-bottom:0}.panel b{color:#fff}.num-inline{color:var(--primary);font-family:'JetBrains Mono',monospace}.num-inline.warn{color:var(--warning)}
+table.heat{border-collapse:separate;border-spacing:4px;width:100%;font-family:'JetBrains Mono',monospace;font-size:12.5px;margin-top:6px}table.heat th{color:var(--muted-2);font-weight:500;padding:7px 4px;text-align:center}table.heat td{padding:10px 6px;text-align:center;border-radius:4px;color:#06110f;font-weight:600}.table-caption{color:var(--muted-2);font-size:12px;margin-top:12px;font-family:'JetBrains Mono',monospace}
+footer{padding:56px 0 64px;background:var(--primary-container);border-top:1px solid rgba(68,71,77,.3)}.footer-grid{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:22px}.footer-note{color:var(--muted);font-size:12px;font-family:'JetBrains Mono',monospace;margin-top:32px}
+@media(max-width:820px){body{padding-top:60px}nav .wrap{height:60px}.brand{font-size:20px}.navlinks{gap:16px;font-size:11px;overflow-x:auto}header.hero{padding:60px 0 48px}.grid3{grid-template-columns:1fr}.statband{grid-template-columns:repeat(2,1fr)}.method-row{grid-template-columns:36px 1fr}.wrap{padding:0 20px}}
+
+.back-link{
+  font-family:'JetBrains Mono',monospace;
+  font-size:13px;
+  font-weight:500;
+  color:var(--primary);
+  text-decoration:none;
+}
+.back-link:hover{color:#fff;}
+</style></head>
+<body>
+<nav>
+<div class="wrap"><a class="brand back-link" href="index.html">← Back</a>
+
+<div class="navlinks">
+<a href="#eli5">In plain terms</a>
+<a href="#overview">Overview</a>
+<a href="#method">Method</a>
+<a href="#results">Results</a>
+<a href="#conclusions">Conclusions</a>
+</div>
+</div>
+</nav>
+<header class="hero">
+<div class="wrap">
+<div class="eyebrow-row">
+<span class="eyebrow">Undergraduate Thesis · PHY499 · Physics</span>
+<span class="status-pill">● Completed</span>
+</div>
+<h1 class="title">Entropy in the Stock Market</h1>
+<p class="dek">A study of whether Indian IT stocks enter unusually ordered periods together, and how they return to normal afterward.</p>
+<div class="hero-actions">
+<a class="btn btn-primary" href="https://github.com/Gautam-Kumaran/Entropy-in-the-stock-market" rel="noopener noreferrer" target="_blank">View source on GitHub →</a>
+<a class="btn btn-ghost" href="#conclusions">Jump to conclusions</a>
+</div>
+</div>
+</header>
+<section id="eli5">
+<div class="wrap">
+<div class="kicker">In plain terms</div>
+<h2 class="sec-title">What this project is actually asking</h2>
+<div class="panel" style="margin-top:24px;">
+<p style="font-size:15.5px;">Every day, a stock either goes up or goes down. Most of the time that's basically a coin flip: hard to predict, and each stock does its own thing. But sometimes a stock starts moving in one direction over and over, for weeks at a time. That's a more "ordered" stretch than usual: less random, more predictable.</p>
+<p style="font-size:15.5px;">This project asks two simple questions about those ordered stretches. <b>First:</b> when one stock enters one of these ordered periods, do other stocks in the same sector tend to enter one at the same time, or is it just a coincidence? <b>Second:</b> once a stock is in one of these ordered periods, how does it snap back to its normal, unpredictable self: quickly and predictably, or slowly and randomly?</p>
+<p style="font-size:15.5px; margin-bottom:0;">The motivation came from physics: ideas like "order," "randomness," and "returning to equilibrium" show up all over statistical physics, and it turns out they map onto stock markets surprisingly well. So the project borrows entropy, a way of measuring how random or ordered something is, and applies it to 14 Indian IT stocks to see if those physics-style patterns actually show up in real market data.</p>
+</div>
+</div>
+</section>
+<section id="overview">
+<div class="wrap">
+<div class="kicker">Overview</div>
+<h2 class="sec-title">Treating a stock market like a system moving away from equilibrium</h2>
+<p class="sec-sub">Each stock's daily return is reduced to a single bit, up or down, and the "disorder" of that sequence is measured with Shannon entropy, the same quantity used in information theory and thermodynamics. Low entropy means a stock is moving with unusual directional persistence.</p>
+<div class="grid3">
+<div class="card">
+<h3>The problem</h3>
+<p>Do stocks enter low-entropy states independently, or do several enter them together? And once a stock is in that state, is its recovery predictable, or mostly stochastic?</p>
+</div>
+<div class="card">
+<h3>What was built</h3>
+<p>A five-stage Python pipeline covering data collection, cleaning, entropy calculation, a coordination test, and a recovery-time analysis. The full analysis was swept across 4 window sizes and 5 Z-thresholds for robustness.</p>
+</div>
+<div class="card">
+<h3>Dataset</h3>
+<p>Daily closing prices for 14 Indian IT-sector stocks plus the NIFTY IT index, spanning roughly 2006–2026.</p>
+<ul>
+<li>INFY, TCS, WIPRO, HCLTECH, TECHM, MPHASIS, COFORGE, ZENSAR, CYIENT, SONATA, BIRLASOFT, OFSS, TATAELXSI, RAMCOSYS</li>
+</ul>
+</div>
+</div>
+<div class="statband">
+<div class="stat"><div class="num">14</div><div class="lbl">STOCKS + NIFTY IT INDEX</div></div>
+<div class="stat"><div class="num">~20yr</div><div class="lbl">DAILY PRICE HISTORY</div></div>
+<div class="stat"><div class="num">4 × 5</div><div class="lbl">WINDOW × THRESHOLD SWEEP</div></div>
+<div class="stat"><div class="num">7mo</div><div class="lbl">RESEARCH TIMELINE</div></div>
+</div>
+</div>
+</section>
+<section id="method">
+<div class="wrap">
+<div class="kicker">Methodology</div>
+<h2 class="sec-title">From raw prices to a recovery time</h2>
+<p class="sec-sub">Python, using pandas, NumPy, SciPy, yfinance, and Matplotlib. No databases or infra beyond local CSVs; the priority was reproducibility.</p>
+<div class="method-list">
+<div class="method-row">
+<div class="method-num">01</div>
+<div>
+<h3>Binary symbolic representation</h3>
+<p>Log returns r<sub>t</sub> = log(P<sub>t</sub> / P<sub>t−1</sub>) are collapsed to a single bit: 1 if the stock rose, 0 if it didn't. Magnitude is discarded on purpose; the pipeline studies <em>directional</em> order, not volatility.</p>
+</div>
+</div>
+<div class="method-row">
+<div class="method-num">02</div>
+<div>
+<h3>Rolling Shannon entropy</h3>
+<p>H = −p·log₂p − (1−p)·log₂(1−p) is computed over a rolling window of W trading days, where p is the fraction of up-days in the window. A stock-specific threshold (that stock's mean entropy minus Z standard deviations) flags "low-entropy" days.</p>
+<span class="method-tag">Baseline: W = 45 days, Z = 1.75</span>
+</div>
+</div>
+<div class="method-row">
+<div class="method-num">03</div>
+<div>
+<h3>Coordination test: Poisson-binomial null model</h3>
+<p>At each timestep, S(t) counts how many stocks are simultaneously low-entropy. Under independence, each stock has its own empirically estimated probability q<sub>i</sub> of being low-entropy, so S(t) should follow a Poisson-binomial distribution. A significance threshold K is chosen where crossing it would be unlikely by chance, then compared against the real data.</p>
+</div>
+</div>
+<div class="method-row">
+<div class="method-num">04</div>
+<div>
+<h3>Relaxation analysis</h3>
+<p>For every low-entropy episode, two recovery times are tracked: time to cross back above the threshold, and time to fully return to the stock's mean entropy. These recovery times are then correlated against entropy depth, price movement, coordination level, and NIFTY IT sector entropy at entry.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="results">
+<div class="wrap">
+<div class="kicker">Results</div>
+<h2 class="sec-title">Coordinated onset, two-stage recovery</h2>
+<p class="sec-sub">The numbers below are the study's headline findings.</p>
+<div class="result-block">
+<div class="result-head">
+<h3>Low-entropy states are coordinated, not independent</h3>
+</div>
+<div class="panel">
+<p>At baseline parameters (W=45, Z=1.75), the independence-based null model sets a significance threshold of <b class="num-inline">K = 4</b> simultaneous stocks. The real data crossed that threshold <b class="num-inline warn">111 times</b>, far more often than the null model predicts.</p>
+<p>This held up across the full sweep of 4 window sizes and 5 Z-thresholds, so it isn't an artifact of one parameter choice.</p>
+</div>
+</div>
+<div class="result-block">
+<div class="result-head">
+<h3>Recovery happens on two different timescales</h3>
+</div>
+<div class="panel">
+<p>Stocks cross back <em>above</em> the low-entropy threshold quickly, with a mean of <b class="num-inline">6.2 days</b> (median 3.0 days). Fully returning to <em>typical</em> entropy takes much longer, with a mean of <b class="num-inline warn">25.7 days</b> (median 21.0 days).</p>
+<p>Both distributions are right-skewed, with a small number of events taking much longer than average.</p>
+</div>
+</div>
+<div class="result-block">
+<div class="result-head">
+<h3>Entropy depth predicts the fast phase, not the slow one</h3>
+</div>
+<div class="panel">
+<p>How far entropy dropped strongly predicts how fast a stock crosses back over the threshold: <b class="num-inline">r ≈ 0.76</b> (p &lt; 0.0001). It barely predicts the full return to normal: <b class="num-inline warn">r ≈ 0.26</b> (p &lt; 0.0001).</p>
+<p>Price-based event strength showed no meaningful correlation with either recovery measure (r ≈ −0.12 and r ≈ −0.13). Coordination level at entry also showed no meaningful relationship (r ≈ −0.02 and r ≈ 0.06). Sector-wide entropy conditions had no significant effect either (p ≈ 0.55).</p>
+</div>
+</div>
+<div class="result-block">
+<div class="result-head">
+<h3>Robust across parameter choices</h3>
+</div>
+<div class="panel">
+<table class="heat">
+<tr><th>Z \ W</th><th>20</th><th>30</th><th>45</th><th>60</th></tr>
+<tr><th>1.00</th><td style="background:#8fb89a">152</td><td style="background:#5c9f6f">110</td><td style="background:#6ba87d">125</td><td style="background:#3f8f5b">95</td></tr>
+<tr><th>1.25</th><td style="background:#7cb18c">138</td><td style="background:#f5a623">173</td><td style="background:#78af89">132</td><td style="background:#e8a02c">151</td></tr>
+<tr><th>1.50</th><td style="background:#68a67c">121</td><td style="background:#66a57b">119</td><td style="background:#3d8e5a">92</td><td style="background:#3d8e5a">92</td></tr>
+<tr><th>1.75</th><td style="background:#66a57b">119</td><td style="background:#dc9a34">155</td><td style="background:#5c9f6f">111</td><td style="background:#2c5a52">60</td></tr>
+<tr><th>2.00</th><td style="background:#4a935e">90</td><td style="background:#42905b">85</td><td style="background:#33875a">75</td><td style="background:#4c9460">97</td></tr>
+</table>
+<p class="table-caption">Rows = Z-score threshold, columns = rolling window W (days). Values = number of coordinated events (S(t) ≥ K) for that parameter pair.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="conclusions">
+<div class="wrap">
+<div class="kicker">Conclusions</div>
+<h2 class="sec-title">A hybrid structure: collective onset, mostly local recovery</h2>
+<div class="grid3">
+<div class="card">
+<h3>Collective organization</h3>
+<p>Low-entropy states are a genuine collective effect: multiple stocks enter ordered states together far more often than independence would predict.</p>
+</div>
+<div class="card">
+<h3>Two-regime relaxation</h3>
+<p>A fast, structured early exit from the threshold, followed by a slow, largely stochastic return to typical behavior.</p>
+</div>
+<div class="card">
+<h3>Recovery is local</h3>
+<p>Neither sector-wide conditions nor coordination with other stocks meaningfully shapes an individual stock's recovery time; that's governed by stock-specific dynamics.</p>
+</div>
+</div>
+</div>
+</section>
+<footer>
+<div class="wrap">
+<div class="footer-grid">
+<div>
+<h3 style="font-size:19px;">Read the full thesis</h3>
+<p style="color:var(--muted); max-width:50ch; margin-top:8px; font-size:14.5px;">Entropy-Based Analysis of Coordination and Relaxation in Indian IT Sector Stocks, submitted to Shiv Nadar Institution of Eminence, April 2026. Supervised by Dr. Syed Kamil and Dr. Jaideep Ghosh.</p>
+</div>
+<div class="hero-actions">
+<a class="btn btn-primary" href="https://github.com/Gautam-Kumaran/Entropy-in-the-stock-market" rel="noopener noreferrer" target="_blank">GitHub repository →</a>
+</div>
+</div>
+<div class="footer-note">Python · pandas · NumPy · SciPy · yfinance · Matplotlib · Gautam Kumaran, Dept. of Physics</div>
+</div>
+</footer>
+</body>
+</html>

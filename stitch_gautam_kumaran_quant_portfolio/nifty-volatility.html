@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Nifty Trader Pro: Gautam Kumaran</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/><style>
+:root{--bg:#131315;--panel:#0f1b2d;--line:#2f3743;--text:#fff;--muted:#c5c6cd;--muted-2:#8f9097;--primary:#b9c7e4;--primary-container:#0a192f;--success:#10b981;--warning:#f59e0b}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;padding-top:64px;background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}h1,h2,h3{font-family:'Outfit',sans-serif;font-weight:600;letter-spacing:-.01em;margin:0}.mono{font-family:'JetBrains Mono',monospace}a{color:inherit}.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+nav{position:fixed;top:0;left:0;width:100%;z-index:50;background:rgba(10,25,47,.86);backdrop-filter:blur(12px);border-bottom:1px solid rgba(68,71,77,.3)}nav .wrap{height:64px;display:flex;align-items:center;justify-content:space-between}.brand{font-family:'Outfit',sans-serif;font-weight:700;font-size:24px;color:#fff;text-decoration:none}.navlinks{display:flex;gap:32px;align-items:center;font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--muted)}.navlinks a{text-decoration:none;transition:color .2s}.navlinks a:hover{color:var(--primary)}
+header.hero{padding:80px 0 64px;border-bottom:1px solid rgba(68,71,77,.25);background:linear-gradient(180deg,rgba(10,25,47,.16),rgba(19,19,21,0))}.eyebrow-row{display:flex;align-items:center;gap:12px;margin-bottom:18px;flex-wrap:wrap}.eyebrow{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--primary)}.status-pill{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--success);border:1px solid rgba(16,185,129,.35);background:rgba(16,185,129,.12);padding:4px 9px;border-radius:4px}h1.title{font-family:'Outfit',sans-serif;font-size:clamp(38px,5vw,56px);line-height:1.08;max-width:17ch;color:#fff}.dek{color:var(--muted);font-size:18px;max-width:64ch;margin-top:20px}.hero-actions{display:flex;gap:14px;margin-top:28px;flex-wrap:wrap}.btn{font-family:'Inter',sans-serif;font-size:14px;font-weight:600;text-decoration:none;padding:12px 18px;border-radius:4px;display:inline-flex;align-items:center;gap:8px;transition:opacity .2s,background .2s,border-color .2s}.btn-primary{background:#fff;color:var(--primary-container)}.btn-primary:hover{opacity:.9}.btn-ghost{border:1px solid var(--line);color:#fff;background:transparent}.btn-ghost:hover{background:rgba(255,255,255,.04);border-color:var(--primary)}
+section{padding:64px 0;border-bottom:1px solid rgba(68,71,77,.2)}section:nth-of-type(even){background:#0e0e10}.kicker{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--primary);margin-bottom:12px}h2.sec-title{font-family:'Outfit',sans-serif;font-size:clamp(26px,3vw,34px);max-width:26ch;margin-bottom:14px;color:#fff}.sec-sub{color:var(--muted);max-width:68ch;font-size:16px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:36px}.card,.panel{background:rgba(10,25,47,.58);border:1px solid rgba(68,71,77,.42);border-radius:8px}.card{padding:28px}.card h3{font-family:'Outfit',sans-serif;font-size:20px;margin-bottom:10px;color:#fff}.card p{color:var(--muted);font-size:14.5px;margin:0}.card ul{margin:12px 0 0;padding-left:18px;color:var(--muted);font-size:14px}.card ul li{margin-bottom:5px}
+.method-list{margin-top:40px;display:flex;flex-direction:column}.method-row{display:grid;grid-template-columns:60px 1fr;gap:22px;padding:28px 0;border-top:1px solid rgba(68,71,77,.35)}.method-row:last-child{border-bottom:1px solid rgba(68,71,77,.35)}.method-num{font-family:'JetBrains Mono',monospace;color:var(--primary);font-size:13px;padding-top:3px}.method-row h3{font-family:'Outfit',sans-serif;font-size:20px;margin-bottom:8px;color:#fff}.method-row p{color:var(--muted);font-size:14.5px;max-width:74ch;margin:0}.method-tag{display:inline-block;margin-top:12px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--warning);background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.3);padding:4px 9px;border-radius:4px}
+.statband{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:8px;overflow:hidden;margin-top:40px}.stat{background:var(--primary-container);padding:26px 22px}.stat .num{font-family:'Outfit',sans-serif;font-size:30px;color:var(--primary);font-weight:600}.stat .lbl{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);margin-top:7px}
+.result-block{margin-top:48px}.result-block:first-child{margin-top:40px}.result-head{margin-bottom:14px}.result-head h3{font-family:'Outfit',sans-serif;font-size:21px;color:#fff}.fig-tag{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted-2);display:block;margin-top:4px}.panel{padding:28px}.panel p{color:var(--muted);font-size:14.5px;margin:0 0 10px}.panel p:last-child{margin-bottom:0}.panel b{color:#fff}.num-inline{color:var(--primary);font-family:'JetBrains Mono',monospace}.num-inline.warn{color:var(--warning)}
+table.heat{border-collapse:separate;border-spacing:4px;width:100%;font-family:'JetBrains Mono',monospace;font-size:12.5px;margin-top:6px}table.heat th{color:var(--muted-2);font-weight:500;padding:7px 4px;text-align:center}table.heat td{padding:10px 6px;text-align:center;border-radius:4px;color:#06110f;font-weight:600}.table-caption{color:var(--muted-2);font-size:12px;margin-top:12px;font-family:'JetBrains Mono',monospace}
+footer{padding:56px 0 64px;background:var(--primary-container);border-top:1px solid rgba(68,71,77,.3)}.footer-grid{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:22px}.footer-note{color:var(--muted);font-size:12px;font-family:'JetBrains Mono',monospace;margin-top:32px}
+@media(max-width:820px){body{padding-top:60px}nav .wrap{height:60px}.brand{font-size:20px}.navlinks{gap:16px;font-size:11px;overflow-x:auto}header.hero{padding:60px 0 48px}.grid3{grid-template-columns:1fr}.statband{grid-template-columns:repeat(2,1fr)}.method-row{grid-template-columns:36px 1fr}.wrap{padding:0 20px}}
+
+.back-link{
+  font-family:'JetBrains Mono',monospace;
+  font-size:13px;
+  font-weight:500;
+  color:var(--primary);
+  text-decoration:none;
+}
+.back-link:hover{color:#fff;}
+</style></head>
+<body>
+<nav>
+<div class="wrap"><a class="brand back-link" href="index.html">← Back</a>
+
+<div class="navlinks">
+<a href="#eli5">In plain terms</a>
+<a href="#overview">Overview</a>
+<a href="#method">Method</a>
+<a href="#results">Results</a>
+<a href="#conclusions">Conclusions</a>
+</div>
+</div>
+</nav>
+<header class="hero">
+<div class="wrap">
+<div class="eyebrow-row">
+<span class="eyebrow">Personal Project · Quantitative Finance</span>
+<span class="status-pill">● Completed and deployed</span>
+</div>
+<h1 class="title">Nifty Trader Pro</h1>
+<p class="dek">An interactive dashboard testing whether a "safe" options trade near Nifty 50 expiry is actually safe, using the full daily trading history back to 2008. <a href="https://nifty50-returns-analysis.onrender.com/" rel="noopener noreferrer" style="color:var(--signal); text-decoration:underline;" target="_blank">Try the live dashboard →</a></p>
+<div class="hero-actions">
+<a class="btn btn-primary" href="https://github.com/Gautam-Kumaran/Nifty50-Returns-analysis" rel="noopener noreferrer" target="_blank">View source on GitHub →</a>
+<a class="btn btn-ghost" href="#conclusions">Jump to conclusions</a>
+</div>
+</div>
+</header>
+<section id="eli5">
+<div class="wrap">
+<div class="kicker">In plain terms</div>
+<h2 class="sec-title">What this project is actually asking</h2>
+<div class="panel" style="margin-top:24px;">
+<p style="font-size:15.5px;">This project examines a specific options strategy: selling Nifty options that are about 2% away from the current price on expiry day, betting they expire worthless. That strategy assumes a 2% move in a single day is unlikely.</p>
+<p style="font-size:15.5px;">In this project, that assumption is tested directly. It is not obvious how often Nifty actually moves 2% in a day, or whether that probability rises as expiry approaches, so the dashboard builds a data-backed answer using the full historical record instead of relying on the assumption.</p>
+<p style="font-size:15.5px; margin-bottom:0;">The dashboard uses the Nifty 50's full daily trading history back to 2008 to test it directly. Users can set their own definition of a "big move," filter by direction, and see exactly how often that kind of move happens overall, and specifically in the days leading up to expiry. The result: big moves are not more frequent in expiry week than elsewhere on the calendar, but within expiry week they do skew more toward the downside.</p>
+</div>
+</div>
+</section>
+<section id="overview">
+<div class="wrap">
+<div class="kicker">Overview</div>
+<h2 class="sec-title">Replacing a gut-feel assumption with the full trading history</h2>
+<p class="sec-sub">Instead of eyeballing a few months of charts, the dashboard pulls every Nifty 50 trading day since 2008 and lets you slice it by move size, direction, year range, and distance from expiry, all filtered instantly in the browser.</p>
+<div class="grid3">
+<div class="card">
+<h3>The problem</h3>
+<p>The actual frequency of Nifty 50 moves of 2% or more in a day, and whether that frequency changes as monthly or weekly expiry approaches, is rarely quantified.</p>
+</div>
+<div class="card">
+<h3>What was built</h3>
+<p>An offline data pipeline that downloads and tags every trading day, a Postgres-backed Flask API, and a vanilla JS dashboard that filters the full dataset client-side after a single API call.</p>
+</div>
+<div class="card">
+<h3>Dataset</h3>
+<p>Daily OHLCV data for the Nifty 50 index, spanning 2008 to 2026, with every day tagged by return, gap, intraday move, and expiry timing.</p>
+</div>
+</div>
+<div class="statband">
+<div class="stat"><div class="num">19yrs</div><div class="lbl">DAILY PRICE HISTORY</div></div>
+<div class="stat"><div class="num">4,530</div><div class="lbl">TRADING DAYS</div></div>
+<div class="stat"><div class="num">8.3%</div><div class="lbl">DAYS MOVING ≥2%</div></div>
+<div class="stat"><div class="num">1</div><div class="lbl">API CALL PER SESSION</div></div>
+</div>
+</div>
+</section>
+<section id="method">
+<div class="wrap">
+<div class="kicker">Methodology</div>
+<h2 class="sec-title">From raw prices to a filterable dataset</h2>
+<p class="sec-sub">Python, using yfinance, pandas, pandas_market_calendars, and psycopg2, backed by PostgreSQL and served through Flask. The frontend is vanilla HTML, CSS, and JavaScript with no framework and no build step.</p>
+<div class="method-list">
+<div class="method-row">
+<div class="method-num">01</div>
+<div>
+<h3>Data collection and derived stats</h3>
+<p>generate_data.py downloads Nifty 50 OHLCV history via yfinance and computes close-to-close return, overnight gap, intraday move, day range, and next-day return for every trading day since 2008.</p>
+</div>
+</div>
+<div class="method-row">
+<div class="method-num">02</div>
+<div>
+<h3>Expiry calendar logic</h3>
+<p>NSE's monthly and weekly options expiry is not simply "the last Thursday of the month." It has to account for holidays shifting expiry to the previous trading day, weekly options not existing before February 2019, and SEBI's September 2025 rule change that moved the standard expiry day from Thursday to Tuesday. get_monthly_expiry() and get_weekly_expiry() walk backward from the theoretical expiry date to the nearest real NSE trading day, using an actual NSE holiday calendar rather than a fixed weekday assumption.</p>
+<span class="method-tag">Regime tags: thursday / tuesday</span>
+</div>
+</div>
+<div class="method-row">
+<div class="method-num">03</div>
+<div>
+<h3>Storage</h3>
+<p>load_to_postgres.py bulk-loads the generated data into a nifty50 Postgres table using execute_values for efficient batch inserts. The project started as a flat data.json file and was migrated to Postgres specifically to get hands-on practice with schema design and SQL.</p>
+</div>
+</div>
+<div class="method-row">
+<div class="method-num">04</div>
+<div>
+<h3>API and frontend</h3>
+<p>app.py is a small Flask API that queries Postgres, groups results by year, and returns JSON shaped identically to the original data.json output. The frontend makes one call to /api/data on load, then all filtering (move size, direction, year range) happens client-side against that dataset, so the dashboard feels instant once it loads.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="results">
+<div class="wrap">
+<div class="kicker">Results</div>
+<h2 class="sec-title">Move frequency is proportional; direction is not</h2>
+<p class="sec-sub">The numbers below come directly from the full 2008–2026 dataset.</p>
+<div class="result-block">
+<div class="result-head">
+<h3>2% moves are not rare</h3>
+</div>
+<div class="panel">
+<p>Across the full dataset, the Nifty 50 moved 2% or more in a single day on <b class="num-inline">8.3%</b> of all trading days, 375 out of 4,530 days between 2008 and 2026.</p>
+</div>
+</div>
+<div class="result-block">
+<div class="result-head">
+<h3>Expiry week's share of big moves is proportional, not elevated</h3>
+</div>
+<div class="panel">
+<p>Expiry week, the seven calendar days leading up to and including monthly expiry, makes up <b class="num-inline">27.8%</b> of all trading days in the dataset. It accounts for <b class="num-inline">24.8%</b> of big-move days. Big moves are not more frequent in expiry week than the rest of the calendar; if anything, the share is slightly lower.</p>
+</div>
+</div>
+<div class="result-block">
+<div class="result-head">
+<h3>Within expiry week, the direction skews more bearish</h3>
+</div>
+<div class="panel">
+<p>Across the full dataset, big moves split roughly <b class="num-inline">51.7% down / 48.3% up</b>. Within expiry week specifically, that split shifts to <b class="num-inline warn">55.9% down / 44.1% up</b>, a modest additional lean toward the downside compared to the overall split.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="conclusions">
+<div class="wrap">
+<div class="kicker">Conclusions</div>
+<h2 class="sec-title">A measured baseline for expiry-week risk</h2>
+<div class="grid3">
+<div class="card">
+<h3>Move frequency, not elevated near expiry</h3>
+<p>Expiry week accounts for 24.8% of big-move days while making up 27.8% of all trading days, so big moves are not disproportionately frequent near expiry.</p>
+</div>
+<div class="card">
+<h3>Direction shifts within expiry week</h3>
+<p>The overall big-move split is close to even (51.7% down / 48.3% up). Within expiry week specifically, that shifts to 55.9% down / 44.1% up, a modest bearish lean.</p>
+</div>
+<div class="card">
+<h3>Data over intuition</h3>
+<p>The results replace an untested assumption with a measured baseline: move frequency near expiry is unremarkable, but the direction of those moves skews more bearish.</p>
+</div>
+</div>
+</div>
+</section>
+<footer>
+<div class="wrap">
+<div class="footer-grid">
+<div>
+<h3 style="font-size:19px;">Read the source</h3>
+<p style="color:var(--muted); max-width:50ch; margin-top:8px; font-size:14.5px;">Full pipeline and dashboard code for Nifty Trader Pro, covering data collection, expiry-calendar logic, and the Flask API.</p>
+</div>
+<div class="hero-actions">
+<a class="btn btn-primary" href="https://github.com/Gautam-Kumaran/Nifty50-Returns-analysis" rel="noopener noreferrer" target="_blank">GitHub repository →</a>
+</div>
+</div>
+<div class="footer-note">Python · yfinance · pandas · pandas_market_calendars · PostgreSQL · Flask · Vanilla JS · Gautam Kumaran</div>
+</div>
+</footer>
+</body>
+</html>

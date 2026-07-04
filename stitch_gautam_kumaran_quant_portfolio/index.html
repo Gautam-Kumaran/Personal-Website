@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Gautam Kumaran | Quantitative Finance Projects</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&amp;family=Inter:wght@400;600&amp;family=JetBrains+Mono:wght@400;500&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;family=JetBrains+Mono:wght@100..900&amp;family=Outfit:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary-fixed": "#2b1701",
+                        "inverse-surface": "#e4e2e4",
+                        "surface-container-highest": "#343536",
+                        "surface-container": "#1f1f21",
+                        "text-primary": "#FFFFFF",
+                        "primary-container": "#0a192f",
+                        "primary-fixed": "#d6e3ff",
+                        "secondary": "#b7c8e1",
+                        "on-secondary-container": "#a9bad3",
+                        "on-primary": "#233148",
+                        "surface-dim": "#131315",
+                        "on-error": "#690005",
+                        "tertiary-container": "#281400",
+                        "on-primary-container": "#74829d",
+                        "status-wip": "#F59E0B",
+                        "on-tertiary-fixed-variant": "#5d4124",
+                        "on-surface-variant": "#c5c6cd",
+                        "surface-container-lowest": "#0e0e10",
+                        "on-error-container": "#ffdad6",
+                        "outline": "#8f9097",
+                        "tertiary-fixed-dim": "#e7bf99",
+                        "surface": "#131315",
+                        "tertiary": "#e7bf99",
+                        "secondary-container": "#3a4a5f",
+                        "surface-container-high": "#2a2a2c",
+                        "tertiary-fixed": "#ffdcbd",
+                        "on-surface": "#e4e2e4",
+                        "on-primary-fixed": "#0d1c32",
+                        "surface-variant": "#343536",
+                        "inverse-on-surface": "#303032",
+                        "primary-fixed-dim": "#b9c7e4",
+                        "outline-variant": "#44474d",
+                        "on-secondary-fixed-variant": "#38485d",
+                        "secondary-fixed": "#d3e4fe",
+                        "error-container": "#93000a",
+                        "primary": "#b9c7e4",
+                        "on-tertiary": "#432b10",
+                        "inverse-primary": "#515f78",
+                        "surface-tint": "#b9c7e4",
+                        "text-secondary": "#94A3B8",
+                        "on-background": "#e4e2e4",
+                        "secondary-fixed-dim": "#b7c8e1",
+                        "on-secondary": "#213145",
+                        "on-secondary-fixed": "#0b1c30",
+                        "surface-container-low": "#1b1b1d",
+                        "background": "#131315",
+                        "error": "#ffb4ab",
+                        "on-primary-fixed-variant": "#39475f",
+                        "on-tertiary-container": "#9d7b5a",
+                        "surface-bright": "#39393b",
+                        "status-success": "#10B981"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "stack-sm": "8px",
+                        "stack-md": "16px",
+                        "gutter": "24px",
+                        "stack-lg": "32px",
+                        "stack-xl": "64px",
+                        "margin-mobile": "20px",
+                        "container-max": "1120px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Outfit"],
+                        "headline-xl": ["Outfit"],
+                        "headline-xl-mobile": ["Outfit"],
+                        "button": ["Inter"],
+                        "label-mono": ["JetBrains Mono"],
+                        "body-sm": ["Inter"],
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-md": ["Outfit"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                        "headline-xl": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-xl-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                        "button": ["14px", {"lineHeight": "1.0", "letterSpacing": "0.02em", "fontWeight": "600"}],
+                        "label-mono": ["13px", {"lineHeight": "1.0", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                        "body-sm": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                        "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            background-color: #131315;
+            color: #e4e2e4;
+            scroll-behavior: smooth;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-panel {
+            background: rgba(10, 25, 47, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(68, 71, 77, 0.3);
+        }
+        .data-gradient {
+            background: linear-gradient(135deg, rgba(185, 199, 228, 0.05) 0%, rgba(10, 25, 47, 0) 100%);
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #131315;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #44474d;
+        }
+    </style>
+</head>
+<body class="font-body-md bg-background text-on-background selection:bg-primary/30">
+<!-- Top Navigation -->
+<nav class="fixed top-0 w-full z-50 bg-primary-container/80 backdrop-blur-md border-b border-outline-variant/20">
+<div class="max-w-container-max mx-auto px-gutter flex items-center h-16 justify-end">
+<div class="hidden md:flex items-center gap-stack-lg font-label-mono text-label-mono">
+<a class="text-primary border-b border-primary pb-1 transition-all duration-200" href="#home">Home</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="#projects">Projects</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="#contact">Contact</a>
+</div>
+<button class="md:hidden text-primary">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</nav>
+<main class="pt-16">
+<!-- Hero Section -->
+<section class="relative overflow-hidden py-20 flex items-center" id="home">
+<div class="max-w-container-max mx-auto px-gutter relative z-10 flex justify-center">
+<div class="space-y-stack-lg max-w-3xl w-full text-center">
+<div class="space-y-stack-sm">
+<span class="font-label-mono text-label-mono text-primary uppercase tracking-[0.2em]">Project Portfolio</span>
+<h1 class="font-headline-xl text-headline-xl md:text-headline-xl text-text-primary leading-none">
+                            Gautam Kumaran
+                        </h1>
+<h2 class="font-headline-lg text-headline-lg text-secondary">Finance and Data Projects</h2>
+</div>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl mx-auto">A collection of projects I built to study stock-market behaviour, options, and historical price data using Python.</p>
+<div class="flex flex-wrap gap-stack-md pt-stack-md justify-center">
+<a class="px-stack-lg py-3 bg-text-primary text-primary-container font-button text-button rounded-lg hover:opacity-90 transition-opacity" href="#projects">
+                            View Projects
+                        </a>
+<a class="px-stack-lg py-3 border border-outline-variant text-text-primary font-button text-button rounded-lg hover:bg-white/5 transition-colors flex items-center gap-2" href="https://github.com/Gautam-Kumaran" rel="noopener noreferrer" target="_blank">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">code</span>
+                            GitHub
+                        </a>
+</div>
+</div>
+</div>
+</section>
+<!-- Projects Grid Section -->
+<section class="py-stack-xl bg-surface-container-lowest" id="projects">
+<div class="max-w-container-max mx-auto px-gutter">
+<div class="flex flex-col md:flex-row justify-between items-end mb-stack-xl gap-stack-md">
+<div class="space-y-stack-sm">
+<span class="font-label-mono text-label-mono text-primary uppercase">Portfolio</span>
+<h3 class="font-headline-lg text-headline-lg text-text-primary">Selected Projects</h3>
+</div>
+<p class="font-body-sm text-on-surface-variant max-w-xs text-right hidden md:block">Three projects covering stock-market behaviour, options, and historical market data.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<!-- Project 1: Entropy -->
+<div class="glass-panel flex flex-col group hover:border-primary/40 transition-all duration-300 cursor-pointer" onclick="window.location.href='entropy.html'">
+<div class="relative h-48 overflow-hidden">
+<div class="absolute inset-0 bg-primary/10 group-hover:bg-primary/5 transition-colors"></div>
+<div class="absolute inset-0 flex items-center justify-center">
+<span class="material-symbols-outlined text-5xl text-primary opacity-20 group-hover:opacity-40 transition-opacity">blur_on</span>
+</div>
+<div class="absolute top-4 right-4">
+<span class="px-2 py-1 bg-status-success/20 text-status-success font-label-mono text-[10px] rounded border border-status-success/30">COMPLETED</span>
+</div>
+</div>
+<div class="p-stack-lg flex-grow flex flex-col">
+<h4 class="font-headline-md text-headline-md text-text-primary mb-stack-sm">Entropy in the Stock Market</h4>
+<p class="font-body-sm text-on-surface-variant mb-stack-lg line-clamp-3">A research project that uses Shannon entropy to study whether Indian IT stocks enter unusually ordered periods at the same time and how long they take to return to normal.</p>
+<div class="mb-stack-lg space-y-stack-sm">
+<p class="font-label-mono text-[10px] text-outline uppercase">Key Result</p>
+<div class="flex flex-col items-start gap-2">
+<span class="font-headline-md text-primary">Two-stage recovery</span>
+<span class="text-body-sm text-on-surface-variant leading-relaxed">6.2 days to exit the low-entropy state; 25.7 days to return to normal</span>
+</div>
+</div>
+<div class="mt-auto pt-stack-md flex flex-wrap gap-2"><span class="px-2 py-1 border border-outline-variant rounded font-label-mono text-[10px] text-on-surface-variant">Python</span><span class="px-2 py-1 border border-outline-variant rounded font-label-mono text-[10px] text-on-surface-variant">Pandas</span><span class="px-2 py-1 border border-outline-variant rounded font-label-mono text-[10px] text-on-surface-variant">NumPy</span><span class="px-2 py-1 border border-outline-variant rounded font-label-mono text-[10px] text-on-surface-variant">SciPy</span></div><div class="flex flex-wrap gap-3 mt-4"><a class="text-xs font-button text-primary hover:underline" href="https://github.com/Gautam-Kumaran/Entropy-in-the-stock-market" onclick="event.stopPropagation()" rel="noopener noreferrer" target="_blank">GitHub</a></div>
+</div>
+</div>
+<!-- Project 2: Nifty Trader Pro -->
+<div class="glass-panel flex flex-col group hover:border-primary/40 transition-all duration-300 cursor-pointer" onclick="window.location.href='nifty-volatility.html'">
+<div class="relative h-48 overflow-hidden">
+<div class="absolute inset-0 bg-secondary/10 group-hover:bg-secondary/5 transition-colors"></div>
+<div class="absolute inset-0 flex items-center justify-center">
+<span class="material-symbols-outlined text-5xl text-secondary opacity-20 group-hover:opacity-40 transition-opacity">terminal</span>
+</div>
+<div class="absolute top-4 right-4 flex gap-2">
+<span class="px-2 py-1 bg-status-success/20 text-status-success font-label-mono text-[10px] rounded border border-status-success/30">DEPLOYED</span>
+</div>
+</div>
+<div class="p-stack-lg flex-grow flex flex-col">
+<h4 class="font-headline-md text-headline-md text-text-primary mb-stack-sm">Nifty 50 Volatility Analysis</h4>
+<p class="font-body-sm text-on-surface-variant mb-stack-lg line-clamp-3">A web dashboard that shows how often the Nifty 50 makes large daily moves and whether those moves occur more frequently near options expiry.</p>
+<div class="mb-stack-lg space-y-stack-sm">
+<p class="font-label-mono text-[10px] text-outline uppercase">Key Result</p>
+<div class="flex flex-col items-start gap-2">
+<span class="font-headline-md text-secondary">Large-move frequency</span>
+<span class="text-body-sm text-on-surface-variant leading-relaxed">8.3% of trading days moved by at least 2%</span>
+</div>
+</div>
+<div class="mt-auto pt-stack-md flex flex-wrap gap-2"><span class="px-2 py-1 border border-outline-variant rounded font-label-mono text-[10px] text-on-surface-variant">Python</span><span class="px-2 py-1 border border-outline-variant rounded font-label-mono text-[10px] text-on-surface-variant">Flask</span><span class="px-2 py-1 border border-outline-variant rounded font-label-mono text-[10px] text-on-surface-variant">PostgreSQL</span><span class="px-2 py-1 border border-outline-variant rounded font-label-mono text-[10px] text-on-surface-variant">JavaScript</span></div><div class="flex flex-wrap gap-3 mt-4"><a class="text-xs font-button text-primary hover:underline" href="https://github.com/Gautam-Kumaran/Nifty50-Returns-analysis" onclick="event.stopPropagation()" rel="noopener noreferrer" target="_blank">GitHub</a><a class="text-xs font-button text-primary hover:underline" href="https://nifty50-returns-analysis.onrender.com/" onclick="event.stopPropagation()" rel="noopener noreferrer" target="_blank">Live Demo</a></div>
+</div>
+</div>
+<!-- Project 3: NSE Option Strategy Analyzer -->
+<div class="glass-panel flex flex-col group hover:border-primary/40 transition-all duration-300 cursor-pointer" onclick="window.location.href='options-analyzer.html'">
+<div class="relative h-48 overflow-hidden">
+<div class="absolute inset-0 bg-tertiary/10 group-hover:bg-tertiary/5 transition-colors"></div>
+<div class="absolute inset-0 flex items-center justify-center">
+<span class="material-symbols-outlined text-5xl text-tertiary opacity-20 group-hover:opacity-40 transition-opacity">query_stats</span>
+</div>
+<div class="absolute top-4 right-4">
+<span class="px-2 py-1 bg-status-wip/20 text-status-wip font-label-mono text-[10px] rounded border border-status-wip/30">WIP</span>
+</div>
+</div>
+<div class="p-stack-lg flex-grow flex flex-col">
+<h4 class="font-headline-md text-headline-md text-text-primary mb-stack-sm">NSE Option Strategy Analyzer</h4>
+<p class="font-body-sm text-on-surface-variant mb-stack-lg line-clamp-3">A Python tool that reads NSE options data, calculates implied volatility, analyses market conditions, and suggests options strategies based on a set of rules.</p>
+<div class="mb-stack-lg space-y-stack-sm">
+<p class="font-label-mono text-[10px] text-outline uppercase">Development Focus</p>
+<div class="flex flex-col items-start gap-2">
+<span class="font-headline-md text-tertiary">Current focus</span>
+<span class="text-body-sm text-on-surface-variant leading-relaxed">Improving strategy rules and backtesting</span>
+</div>
+</div>
+<div class="mt-auto pt-stack-md flex flex-wrap gap-2"><span class="px-2 py-1 border border-outline-variant rounded font-label-mono text-[10px] text-on-surface-variant">Python</span><span class="px-2 py-1 border border-outline-variant rounded font-label-mono text-[10px] text-on-surface-variant">Pandas</span><span class="px-2 py-1 border border-outline-variant rounded font-label-mono text-[10px] text-on-surface-variant">SciPy</span><span class="px-2 py-1 border border-outline-variant rounded font-label-mono text-[10px] text-on-surface-variant">Black-Scholes</span></div><div class="flex flex-wrap gap-3 mt-4"><a class="text-xs font-button text-primary hover:underline" href="https://github.com/Gautam-Kumaran/Option-Strategy-Analyzer" onclick="event.stopPropagation()" rel="noopener noreferrer" target="_blank">GitHub</a></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Technical Details Section -->
+<section class="py-stack-xl border-t border-outline-variant/10">
+<div class="max-w-container-max mx-auto px-gutter">
+<div class="grid md:grid-cols-2 gap-stack-xl">
+<div class="space-y-stack-md">
+<h3 class="font-headline-md text-headline-md text-text-primary">How the Projects Were Built</h3>
+<p class="font-body-md text-on-surface-variant">Each project started with a specific market question. I collected the required data, cleaned it, wrote the analysis in Python, and checked whether the results supported the original idea.</p>
+<ul class="space-y-stack-sm font-body-sm text-on-surface-variant">
+<li class="flex items-start gap-3">
+<span class="text-primary font-bold mt-1">—</span>
+<span>Collecting and cleaning historical market data</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="text-primary font-bold mt-1">—</span>
+<span>Testing ideas using statistics and Python</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="text-primary font-bold mt-1">—</span>
+<span>Presenting the results through charts, reports, or a web dashboard</span>
+</li>
+</ul>
+</div>
+<div class="bg-primary-container/30 p-stack-lg rounded-xl border border-outline-variant/20">
+<div class="flex items-center gap-stack-md mb-stack-md">
+<div class="w-12 h-12 bg-primary/20 flex items-center justify-center rounded-lg">
+<span class="material-symbols-outlined text-primary">analytics</span>
+</div>
+<span class="font-headline-md text-text-primary">Technologies Used</span>
+</div>
+<div class="grid grid-cols-2 gap-stack-md">
+<div class="space-y-1">
+<p class="font-label-mono text-[10px] text-outline uppercase">Data analysis</p>
+<p class="text-body-sm text-text-primary">Python, Pandas, NumPy, SciPy</p>
+</div>
+<div class="space-y-1">
+<p class="font-label-mono text-[10px] text-outline uppercase">Web application</p>
+<p class="text-body-sm text-text-primary">Flask, HTML, CSS, JavaScript</p>
+</div>
+<div class="space-y-1">
+<p class="font-label-mono text-[10px] text-outline uppercase">Database</p>
+<p class="text-body-sm text-text-primary">PostgreSQL</p>
+</div>
+<div class="space-y-1">
+<p class="font-label-mono text-[10px] text-outline uppercase">Data sources</p>
+<p class="text-body-sm text-text-primary">Yahoo Finance, NSE bhavcopy data</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Contact Section -->
+<section class="py-stack-xl border-t border-outline-variant/10" id="contact">
+<div class="max-w-container-max mx-auto px-gutter text-center space-y-stack-lg">
+<div class="max-w-xl mx-auto space-y-stack-sm">
+<h3 class="font-headline-lg text-headline-lg text-text-primary">Get in Touch</h3>
+<p class="font-body-md text-on-surface-variant">Feel free to contact me if you would like to discuss one of these projects.</p>
+</div>
+<div class="flex justify-center flex-wrap gap-stack-lg pt-stack-md">
+<a class="flex items-center gap-3 text-on-surface-variant hover:text-primary transition-colors" href="mailto:gautamkumaran00@gmail.com">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">mail</span>
+<span class="font-label-mono">Email</span>
+</a>
+<a class="flex items-center gap-3 text-on-surface-variant hover:text-primary transition-colors" href="https://www.linkedin.com/in/gautam-kumaran-742a1b212/" rel="noopener noreferrer" target="_blank">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">share</span>
+<span class="font-label-mono">LinkedIn</span>
+</a>
+<a class="flex items-center gap-3 text-on-surface-variant hover:text-primary transition-colors" href="https://github.com/Gautam-Kumaran" rel="noopener noreferrer" target="_blank">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">code</span>
+<span class="font-label-mono">GitHub</span>
+</a>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-primary-container dark:bg-primary-container w-full py-stack-xl border-t border-outline-variant/20">
+<div class="max-w-container-max mx-auto px-gutter flex flex-col md:flex-row items-center gap-stack-md justify-center">
+<div class="flex flex-col md:flex-row items-center gap-stack-md">
+<span class="font-label-mono text-label-mono uppercase tracking-widest text-text-primary">Gautam Kumaran</span>
+<span class="hidden md:block w-px h-4 bg-outline-variant/30"></span>
+<p class="font-body-sm text-body-sm text-text-secondary dark:text-on-surface-variant">© 2026 Gautam Kumaran</p>
+</div>
+</div>
+</footer>
+<script>
+        // Micro-interactions and subtle scroll animations
+        document.addEventListener('DOMContentLoaded', () => {
+            const observerOptions = {
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('opacity-100', 'translate-y-0');
+                        entry.target.classList.remove('opacity-0', 'translate-y-10');
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.glass-panel').forEach(el => {
+                el.classList.add('opacity-0', 'translate-y-10', 'transition-all', 'duration-700');
+                observer.observe(el);
+            });
+        });
+
+        // Simple smooth scroll highlighting for nav
+        window.addEventListener('scroll', () => {
+            let current = "";
+            const sections = document.querySelectorAll("section");
+            const navLinks = document.querySelectorAll("nav a");
+
+            sections.forEach((section) => {
+                const sectionTop = section.offsetTop;
+                if (pageYOffset >= sectionTop - 100) {
+                    current = section.getAttribute("id");
+                }
+            });
+
+            navLinks.forEach((link) => {
+                link.classList.remove("text-primary", "border-b", "border-primary", "pb-1");
+                link.classList.add("text-on-surface-variant");
+                if (link.getAttribute("href").includes(current)) {
+                    link.classList.add("text-primary", "border-b", "border-primary", "pb-1");
+                    link.classList.remove("text-on-surface-variant");
+                }
+            });
+        });
+    </script>
+</body></html>
