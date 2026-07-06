@@ -27,6 +27,89 @@ footer{padding:56px 0 64px;background:var(--primary-container);border-top:1px so
   text-decoration:none;
 }
 .back-link:hover{color:#fff;}
+
+.fig-wrap{margin-top:18px;}
+.fig-wrap img{
+  width:100%;
+  max-width:420px;
+  display:block;
+  margin:0 auto;
+  border:1px solid rgba(68,71,77,.42);
+  border-radius:8px;
+  cursor:zoom-in;
+  transition:border-color .2s;
+}
+.fig-wrap img:hover{border-color:var(--primary);}
+.fig-hint{
+  font-family:'JetBrains Mono',monospace;
+  font-size:11px;
+  color:var(--muted-2);
+  margin-top:8px;
+  display:block;
+  text-align:center;
+}
+
+.lightbox{
+  position:fixed;
+  inset:0;
+  z-index:200;
+  background:rgba(6,8,12,.92);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  backdrop-filter:blur(4px);
+}
+.lightbox.open{display:flex;}
+.lightbox-stage{
+  width:92vw;
+  height:88vh;
+  overflow:hidden;
+  position:relative;
+  cursor:grab;
+}
+.lightbox-stage.grabbing{cursor:grabbing;}
+.lightbox-stage img{
+  position:absolute;
+  top:0;
+  left:0;
+  transform-origin:0 0;
+  max-width:none;
+  user-select:none;
+  -webkit-user-drag:none;
+  pointer-events:none;
+}
+.lightbox-bar{
+  position:absolute;
+  top:18px;
+  right:18px;
+  display:flex;
+  gap:10px;
+  z-index:201;
+}
+.lightbox-btn{
+  font-family:'JetBrains Mono',monospace;
+  font-size:12px;
+  color:#fff;
+  background:rgba(10,25,47,.75);
+  border:1px solid rgba(68,71,77,.6);
+  border-radius:4px;
+  padding:8px 12px;
+  cursor:pointer;
+}
+.lightbox-btn:hover{border-color:var(--primary);}
+.lightbox-tip{
+  position:absolute;
+  bottom:18px;
+  left:50%;
+  transform:translateX(-50%);
+  font-family:'JetBrains Mono',monospace;
+  font-size:11px;
+  color:var(--muted);
+  background:rgba(10,25,47,.75);
+  border:1px solid rgba(68,71,77,.5);
+  border-radius:4px;
+  padding:6px 12px;
+}
 </style></head>
 <body>
 <nav>
@@ -146,6 +229,10 @@ footer{padding:56px 0 64px;background:var(--primary-container);border-top:1px so
 <div class="panel">
 <p>At baseline parameters (W=45, Z=1.75), the independence-based null model sets a significance threshold of <b class="num-inline">K = 4</b> simultaneous stocks. The real data crossed that threshold <b class="num-inline warn">111 times</b>, far more often than the null model predicts.</p>
 <p>This held up across the full sweep of 4 window sizes and 5 Z-thresholds, so it isn't an artifact of one parameter choice.</p>
+<div class="fig-wrap">
+<img alt="Entropy time series for all 14 stocks with coordinated low-entropy events marked" class="zoomable" src="figures/entropy-timeseries.png"/>
+<span class="fig-hint">Click to zoom: entropy time series for all 14 stocks, coordinated events marked in red</span>
+</div>
 </div>
 </div>
 <div class="result-block">
@@ -155,6 +242,10 @@ footer{padding:56px 0 64px;background:var(--primary-container);border-top:1px so
 <div class="panel">
 <p>Stocks cross back <em>above</em> the low-entropy threshold quickly, with a mean of <b class="num-inline">6.2 days</b> (median 3.0 days). Fully returning to <em>typical</em> entropy takes much longer, with a mean of <b class="num-inline warn">25.7 days</b> (median 21.0 days).</p>
 <p>Both distributions are right-skewed, with a small number of events taking much longer than average.</p>
+<div class="fig-wrap">
+<img alt="Cumulative distribution functions of threshold recovery time and mean recovery time" class="zoomable" src="figures/recovery-cdf.png"/>
+<span class="fig-hint">Click to zoom: CDFs of both recovery measures, showing the timescale separation</span>
+</div>
 </div>
 </div>
 <div class="result-block">
@@ -164,6 +255,10 @@ footer{padding:56px 0 64px;background:var(--primary-container);border-top:1px so
 <div class="panel">
 <p>How far entropy dropped strongly predicts how fast a stock crosses back over the threshold: <b class="num-inline">r ≈ 0.76</b> (p &lt; 0.0001). It barely predicts the full return to normal: <b class="num-inline warn">r ≈ 0.26</b> (p &lt; 0.0001).</p>
 <p>Price-based event strength showed no meaningful correlation with either recovery measure (r ≈ −0.12 and r ≈ −0.13). Coordination level at entry also showed no meaningful relationship (r ≈ −0.02 and r ≈ 0.06). Sector-wide entropy conditions had no significant effect either (p ≈ 0.55).</p>
+<div class="fig-wrap">
+<img alt="Threshold recovery time as a function of minimum entropy depth during the event" class="zoomable" src="figures/entropy-depth-vs-recovery.png"/>
+<span class="fig-hint">Click to zoom: recovery time vs. entropy depth, r ≈ 0.76</span>
+</div>
 </div>
 </div>
 <div class="result-block">
@@ -190,16 +285,16 @@ footer{padding:56px 0 64px;background:var(--primary-container);border-top:1px so
 <h2 class="sec-title">A hybrid structure: collective onset, mostly local recovery</h2>
 <div class="grid3">
 <div class="card">
+<h3>Recovery is local</h3>
+<p>Neither sector-wide conditions nor coordination with other stocks meaningfully shapes an individual stock's recovery time; that's governed by stock-specific dynamics. This is the more surprising result: even though stocks enter low-entropy states together, they exit on their own schedule.</p>
+</div>
+<div class="card">
 <h3>Collective organization</h3>
 <p>Low-entropy states are a genuine collective effect: multiple stocks enter ordered states together far more often than independence would predict.</p>
 </div>
 <div class="card">
 <h3>Two-regime relaxation</h3>
 <p>A fast, structured early exit from the threshold, followed by a slow, largely stochastic return to typical behavior.</p>
-</div>
-<div class="card">
-<h3>Recovery is local</h3>
-<p>Neither sector-wide conditions nor coordination with other stocks meaningfully shapes an individual stock's recovery time; that's governed by stock-specific dynamics.</p>
 </div>
 </div>
 </div>
@@ -218,5 +313,118 @@ footer{padding:56px 0 64px;background:var(--primary-container);border-top:1px so
 <div class="footer-note">Python · pandas · NumPy · SciPy · yfinance · Matplotlib · Gautam Kumaran, Dept. of Physics</div>
 </div>
 </footer>
+<div class="lightbox" id="lightbox">
+<div class="lightbox-bar">
+<button class="lightbox-btn" id="lb-reset" type="button">Reset</button>
+<button class="lightbox-btn" id="lb-close" type="button">Close ✕</button>
+</div>
+<div class="lightbox-stage" id="lb-stage">
+<img id="lb-img" src="" alt=""/>
+</div>
+<div class="lightbox-tip">Scroll to zoom · Drag to pan · Esc to close</div>
+</div>
+
+<script>
+(function(){
+  var lightbox = document.getElementById('lightbox');
+  var stage = document.getElementById('lb-stage');
+  var img = document.getElementById('lb-img');
+  var closeBtn = document.getElementById('lb-close');
+  var resetBtn = document.getElementById('lb-reset');
+
+  var baseScale = 1, scale = 1, panX = 0, panY = 0;
+  var dragging = false, startX = 0, startY = 0;
+
+  function applyTransform(){
+    img.style.transform = 'translate(' + panX + 'px,' + panY + 'px) scale(' + scale + ')';
+  }
+
+  function fitToStage(){
+    var stageRect = stage.getBoundingClientRect();
+    var iw = img.naturalWidth || stageRect.width;
+    var ih = img.naturalHeight || stageRect.height;
+
+    var fitScale = Math.min(stageRect.width / iw, stageRect.height / ih);
+    baseScale = fitScale;
+    scale = fitScale;
+
+    panX = (stageRect.width - iw * scale) / 2;
+    panY = (stageRect.height - ih * scale) / 2;
+
+    applyTransform();
+  }
+
+  function resetView(){
+    fitToStage();
+  }
+
+  function openLightbox(src, alt){
+    img.alt = alt || '';
+    img.onload = fitToStage;
+    img.src = src;
+    lightbox.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    if(img.complete){ fitToStage(); }
+  }
+
+  function closeLightbox(){
+    lightbox.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  document.querySelectorAll('.zoomable').forEach(function(el){
+    el.addEventListener('click', function(){
+      openLightbox(el.src, el.alt);
+    });
+  });
+
+  closeBtn.addEventListener('click', closeLightbox);
+  resetBtn.addEventListener('click', resetView);
+
+  lightbox.addEventListener('click', function(e){
+    if(e.target === lightbox){ closeLightbox(); }
+  });
+
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape'){ closeLightbox(); }
+  });
+
+  stage.addEventListener('wheel', function(e){
+    e.preventDefault();
+    var delta = e.deltaY < 0 ? 1.15 : 1/1.15;
+    var newScale = Math.min(Math.max(scale * delta, baseScale), baseScale * 8);
+
+    var rect = stage.getBoundingClientRect();
+    var cx = e.clientX - rect.left;
+    var cy = e.clientY - rect.top;
+
+    panX = cx - ((cx - panX) * (newScale / scale));
+    panY = cy - ((cy - panY) * (newScale / scale));
+    scale = newScale;
+
+    applyTransform();
+  }, {passive:false});
+
+  stage.addEventListener('mousedown', function(e){
+    dragging = true;
+    stage.classList.add('grabbing');
+    startX = e.clientX - panX;
+    startY = e.clientY - panY;
+  });
+
+  window.addEventListener('mousemove', function(e){
+    if(!dragging) return;
+    panX = e.clientX - startX;
+    panY = e.clientY - startY;
+    applyTransform();
+  });
+
+  window.addEventListener('mouseup', function(){
+    dragging = false;
+    stage.classList.remove('grabbing');
+  });
+})();
+</script>
+
 </body>
 </html>

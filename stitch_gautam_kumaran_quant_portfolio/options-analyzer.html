@@ -248,9 +248,9 @@ footer{
     <div class="kicker">In plain terms</div>
     <h2 class="sec-title">What this project is actually doing</h2>
     <div class="panel" style="margin-top:24px;">
-      <p>I built this to learn options trading by working with real data instead of only reading the theory.</p>
-      <p>The tool takes raw NSE options data, checks whether volatility is relatively high or low, looks at price trend and open interest, and then suggests a strategy that fits those conditions.</p>
-      <p>It also works out the strikes, breakeven points, maximum profit and loss, and then tests the same rules on previous monthly expiry cycles.</p>
+      <p>This project reads raw NSE options data, evaluates whether volatility is relatively high or low, checks price trend and open interest, and suggests a strategy that fits those conditions.</p>
+      <p>It also calculates strikes, breakeven points, and maximum profit and loss, then tests the same decision rules against previous monthly expiry cycles.</p>
+      <p>The goal is a repeatable, rule-based process for options strategy selection, built and refined through direct work with real market data, rather than theory alone. It's an active work in progress: the core pipeline runs end-to-end, but the strategy rules are still being tuned against backtest results.</p>
     </div>
   </div>
 </section>
@@ -277,10 +277,10 @@ footer{
     </div>
 
     <div class="statband">
-      <div class="stat"><div class="num">4</div><div class="lbl">MAIN MODULES</div></div>
-      <div class="stat"><div class="num">12</div><div class="lbl">MONTHLY EXPIRY CYCLES TESTED</div></div>
-      <div class="stat"><div class="num">IV</div><div class="lbl">SOLVED USING BRENT'S METHOD</div></div>
-      <div class="stat"><div class="num">CLI</div><div class="lbl">CURRENT INTERFACE</div></div>
+      <div class="stat"><div class="num">20</div><div class="lbl">TRADES ACROSS 10 EXPIRY CYCLES</div></div>
+      <div class="stat"><div class="num">30%</div><div class="lbl">WIN RATE</div></div>
+      <div class="stat"><div class="num">+₹2,304</div><div class="lbl">EXPECTANCY PER TRADE</div></div>
+      <div class="stat"><div class="num">-17.7%</div><div class="lbl">MODEL CALIBRATION GAP</div></div>
     </div>
   </div>
 </section>
@@ -354,14 +354,23 @@ footer{
     <div class="result-block">
       <div class="result-head"><h3>What still needs work</h3></div>
       <div class="panel">
-        <p>Backtest performance is not consistently strong. The main areas being improved are strike selection, expiry handling, transaction-cost assumptions, and the overall strategy rules.</p>
+        <p>Backtest performance is not consistently strong, and a recent run pointed to the directional/trend signal as the main gap. The next section walks through what that run showed.</p>
+      </div>
+    </div>
+
+    <div class="result-block">
+      <div class="result-head"><h3>Current hypothesis</h3></div>
+      <div class="panel">
+        <p>A backtest run on HDFCBANK across 29 expiry cycles points to the directional signal, not strike selection or transaction costs, as the main thing to fix next. The bullish trend signal was wrong on <b class="num-inline warn">2 out of 2</b> trades it produced, and the bearish signal was only <b class="num-inline warn">43%</b> direction-correct, close to a coin flip. On top of that, <b class="num-inline">11 of the 29</b> cycles produced no trade at all because the direction-scoring logic disagreed with itself.</p>
+        <p>The overall numbers look better than that diagnosis suggests: a <b class="num-inline">30%</b> win rate still produced a positive <b class="num-inline">+₹2,304</b> average expectancy per trade. But that result is fragile. It's carried almost entirely by two outlier trades (a Long Straddle and Long Strangle, both entered the same week) out of 20. Remove those two and the remaining 18 trades are solidly negative. With only 10 expiry cycles tested, that's not yet enough evidence to trust the positive result, and it's consistent with the model's predicted win probability (47.7%) running well ahead of the actual one (30.0%).</p>
+        <p>The next iteration focuses on tightening the trend/direction logic and resolving the internal signal conflicts, rather than strike selection or cost assumptions.</p>
       </div>
     </div>
 
     <div class="result-block">
       <div class="result-head"><h3>What I learned from it</h3></div>
       <div class="panel">
-        <p>The project gave me practical experience with raw exchange data, numerical IV calculation, option payoffs, and the difference between a strategy that sounds reasonable in theory and one that survives historical testing.</p>
+        <p>The project gave me practical experience with raw exchange data, numerical IV calculation via Brent's method, and option payoff construction across a full pipeline: data collection, market analysis, strategy selection, and backtesting. But the bigger lesson was about where confidence should actually come from. A rule-based system built on textbook logic (short strangle when IV is high, iron condor in calmer conditions) sounds reasonable on paper; the only way to know if it holds up is to run it against real expiry data and see which part of the reasoning breaks first. Out of <b class="num-inline">29</b> expiry cycles attempted, only <b class="num-inline">10</b> produced a trade at all, and that alone said more about where the model's weak point was than any amount of reading strategy theory would have.</p>
       </div>
     </div>
   </div>

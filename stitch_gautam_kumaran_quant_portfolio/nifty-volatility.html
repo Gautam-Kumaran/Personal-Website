@@ -142,6 +142,25 @@ footer{padding:56px 0 64px;background:var(--primary-container);border-top:1px so
 </div>
 <div class="panel">
 <p>Across the full dataset, the Nifty 50 moved 2% or more in a single day on <b class="num-inline">8.3%</b> of all trading days, 375 out of 4,530 days between 2008 and 2026.</p>
+<p>Of those 375 big-move days, <b class="num-inline warn">17.1%</b> happened overnight: the move was already priced in at the open, with no intraday warning. A strategy that only watches intraday price action would miss roughly one in six of these events entirely.</p>
+</div>
+</div>
+<div class="result-block">
+<div class="result-head">
+<h3>Once a threshold is crossed, most moves are moderate</h3>
+</div>
+<div class="panel">
+<p>Conditional on a day crossing the 2% threshold, the size of the move is not evenly spread. <b class="num-inline">60.8%</b> land in the 2–3% band, <b class="num-inline">22.7%</b> in 3–4%, <b class="num-inline">5.3%</b> in 4–5%, and <b class="num-inline warn">11.2%</b> exceed 5%.</p>
+<p>The tail matters more than its share suggests: an 11.2% chance of a move beyond 5% is enough to blow through the credit collected on a 2%-OTM short strike, since the payoff of that trade is capped on the upside and effectively uncapped on the downside.</p>
+</div>
+</div>
+<div class="result-block">
+<div class="result-head">
+<h3>Big moves cluster: today's move raises tomorrow's odds</h3>
+</div>
+<div class="panel">
+<p>A big move is not an isolated event. Following one of the 375 big-move days, there is a <b class="num-inline warn">28.3%</b> chance of another big move the very next day (106 of 375 cases), more than three times the unconditional 8.3% base rate.</p>
+<p>Direction is roughly a coin flip on that follow-through day: <b class="num-inline">56.0%</b> up versus <b class="num-inline">44.0%</b> down. So clustering raises the odds of another big move without predicting which way it breaks, which matters for a strategy that assumes each expiry cycle is independent.</p>
 </div>
 </div>
 <div class="result-block">
@@ -157,7 +176,15 @@ footer{padding:56px 0 64px;background:var(--primary-container);border-top:1px so
 <h3>Within expiry week, the direction skews more bearish</h3>
 </div>
 <div class="panel">
-<p>Across the full dataset, big moves split roughly <b class="num-inline">51.7% down / 48.3% up</b>. Within expiry week specifically, that split shifts to <b class="num-inline warn">55.9% down / 44.1% up</b>, a modest additional lean toward the downside compared to the overall split.</p>
+<p>Across the full dataset, big moves split roughly <b class="num-inline">51.7% down / 48.3% up</b>. Within expiry week specifically, that split shifts to <b class="num-inline warn">55.9% down / 44.1% up</b> across 93 expiry-week big-move events, a modest additional lean toward the downside compared to the overall split.</p>
+</div>
+</div>
+<div class="result-block">
+<div class="result-head">
+<h3>What this data does and doesn't tell you</h3>
+</div>
+<div class="panel">
+<p>These numbers describe the risk side of the trade: how often big moves happen, how large they get once a threshold is crossed, how much warning you get, and how the odds shift near expiry. They don't say whether the premium collected is enough to compensate for that risk. That depends on the actual payoff structure of the trade, which isn't part of this analysis.</p>
 </div>
 </div>
 </div>
@@ -176,8 +203,8 @@ footer{padding:56px 0 64px;background:var(--primary-container);border-top:1px so
 <p>The overall big-move split is close to even (51.7% down / 48.3% up). Within expiry week specifically, that shifts to 55.9% down / 44.1% up, a modest bearish lean.</p>
 </div>
 <div class="card">
-<h3>Data over intuition</h3>
-<p>The results replace an untested assumption with a measured baseline: move frequency near expiry is unremarkable, but the direction of those moves skews more bearish.</p>
+<h3>What this means for the trade</h3>
+<p>The "sell 2%-OTM near expiry" assumption holds up on frequency: expiry week isn't riskier than any other week. But it isn't direction-neutral: the extra bearish lean in expiry week means put-side risk is understated more than call-side risk by a strategy that treats both directions as equally unlikely.</p>
 </div>
 </div>
 </div>
