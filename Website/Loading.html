@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Booting up…</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        colors: {
+          "primary": "#3B82F6",
+          "success": "#22C55E",
+          "error": "#EF4444",
+          "surface": "#0B0E14",
+          "surface-glow": "#161B2C",
+          "border-white": "rgba(255, 255, 255, 0.1)",
+        },
+        fontFamily: {
+          sans: ['Inter', 'sans-serif'],
+          mono: ['JetBrains Mono', 'monospace'],
+        },
+        borderRadius: {
+          'xl': '0.75rem',
+        }
+      }
+    }
+  }
+</script>
+<style>
+  body {
+    background: radial-gradient(circle at top center, #161B2C 0%, #0B0E14 70%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Inter', sans-serif;
+  }
+  .glass-card {
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    background: rgba(17, 21, 30, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  .grid-bg {
+    background-image: 
+      linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255,255,255,0.03) 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+  #fact {
+    transition: opacity 0.4s ease;
+  }
+  @keyframes slide { 
+    0% { transform: translateX(-100%); } 
+    100% { transform: translateX(400%); } 
+  }
+  .animate-slide {
+    animation: slide 1.4s ease-in-out infinite;
+  }
+</style>
+</head>
+<body class="p-4 md:p-8">
+<div class="wrap w-full max-w-lg mx-auto">
+  <div class="glass-card rounded-xl p-6 md:p-8 shadow-2xl relative overflow-hidden">
+    <!-- Header info -->
+    <div class="text-center mb-6">
+      <h1 id="heading" class="text-xl md:text-2xl font-bold text-white mb-2 leading-tight">Spinning up the server…</h1>
+      <p id="status" class="text-sm text-slate-400 font-medium min-h-[1.5em]">Render's free tier naps when idle — waking it up now.</p>
+    </div>
+
+    <!-- Game Container -->
+    <div class="relative group">
+      <div class="grid-bg border border-white/10 rounded-xl overflow-hidden bg-black/40">
+        <canvas id="game" width="440" height="260" class="w-full h-[260px] block cursor-pointer touch-none"></canvas>
+      </div>
+      
+      <!-- Overlay controls for aesthetic touch -->
+      <div class="absolute top-3 left-3 flex gap-2 pointer-events-none">
+        <div class="w-2 h-2 rounded-full bg-error opacity-50"></div>
+        <div class="w-2 h-2 rounded-full bg-success opacity-50"></div>
+        <div class="w-2 h-2 rounded-full bg-primary opacity-50"></div>
+      </div>
+
+      <div id="score" class="absolute top-3 right-4 font-mono text-xs font-bold text-success tracking-wider uppercase">P&amp;L: 0</div>
+    </div>
+
+    <!-- Game Controls -->
+    <div class="controls flex gap-3 mt-4">
+      <button id="btn-jump" class="flex-1 py-3 px-4 rounded-lg bg-white/5 border border-white/20 hover:bg-white/10 text-white text-[11px] font-bold tracking-widest uppercase transition-all active:scale-95">Jump ↑</button>
+      <button id="btn-duck" class="flex-1 py-3 px-4 rounded-lg bg-white/5 border border-white/20 hover:bg-white/10 text-white text-[11px] font-bold tracking-widest uppercase transition-all active:scale-95">Duck ↓</button>
+    </div>
+
+    <div class="hint text-center mt-3 text-[10px] text-slate-500 font-medium uppercase tracking-tight">
+      Swipe up/down on mobile
+    </div>
+
+    <!-- Facts Section -->
+    <div class="mt-8 border-t border-white/5 pt-6">
+      <div id="fact" class="bg-white/[0.02] border border-white/10 rounded-xl p-4 text-sm leading-relaxed text-slate-300 min-h-[80px] flex items-center justify-center text-center italic font-medium">
+        <!-- Content injected by JS -->
+      </div>
+    </div>
+
+    <!-- Progress Bar -->
+    <div class="w-full h-1 bg-white/5 rounded-full mt-6 overflow-hidden relative">
+      <div class="bar-fill absolute top-0 left-0 h-full w-1/3 bg-primary animate-slide shadow-[0_0_8px_rgba(59,130,246,0.5)]"></div>
+    </div>
+
+    <!-- Footer Action -->
+    <div class="text-center mt-6">
+      <span id="skip" class="text-[11px] font-bold text-slate-500 hover:text-primary cursor-pointer transition-colors uppercase tracking-wider underline underline-offset-4">Open direct link</span>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ---------------- CONFIG ---------------- */
+const params = new URLSearchParams(window.location.search);
+const TARGET_URL = params.get('target') || 'https://gautam-kumaran.onrender.com';
+const HEALTH_PATH = params.get('health') || '/';
+const POLL_INTERVAL_MS = 2500;
+const MAX_WAIT_MS = 90000;
+
+/* ---------------- FACTS ---------------- */
+const facts = [
+  "I ran entropy analysis on 20 years of Indian IT stocks. Markets sync up more than chance predicts.",
+  "I researched how Indian IT stocks recover after a shock. Found two patterns: a fast recovery tied to how deep the shock went, and a slow one that looks almost random.",
+  "Built an options engine that reads IV, PCR and OI to suggest trades, after watching my parents guess at what those numbers meant.",
+  "Backtested my options engine across real expiry cycles with brokerage and slippage priced in. Direction calls were the weak link, not strike picking.",
+  "Tested 19 years of Nifty data on one question: is a 2%-out option actually safe on expiry day? No.",
+  "Started investing in Grade 10, self-taught, out of curiosity about markets.",
+  "Spent a summer at UC Santa Cruz mapping 600,000 stars. Found a young population hiding in the data.",
+  "Ran N-body simulations of tidal stellar streams to see how different gravity fields bend them.",
+  "Break the scary problem into pieces small enough to actually solve. That's the whole method."
+];
+
+let factIndex = 0;
+const factEl = document.getElementById('fact');
+function showFact() {
+  factEl.style.opacity = 0;
+  setTimeout(() => {
+    factEl.textContent = facts[factIndex % facts.length];
+    factEl.style.opacity = 1;
+    factIndex++;
+  }, 400);
+}
+showFact();
+const factTimer = setInterval(showFact, 4200);
+
+/* ---------------- SERVER POLLING ---------------- */
+const statusEl = document.getElementById('status');
+const headingEl = document.getElementById('heading');
+const skipEl = document.getElementById('skip');
+
+let elapsed = 0;
+const tickTimer = setInterval(() => {
+  elapsed += 1;
+  if (elapsed === 10) statusEl.textContent = "Still booting — keep an eye on that spread.";
+  if (elapsed === 25) statusEl.textContent = "Almost there, hang tight…";
+  if (elapsed === 45) statusEl.textContent = "This one's taking longer than a cold start usually does.";
+}, 1000);
+
+async function checkServer() {
+  try {
+    await fetch(TARGET_URL + HEALTH_PATH, { method: 'GET', mode: 'no-cors', cache: 'no-store' });
+    return true;
+  } catch (e) { return false; }
+}
+
+let waited = 0;
+async function poll() {
+  const ok = await checkServer();
+  if (ok) {
+    clearInterval(tickTimer);
+    clearInterval(factTimer);
+    headingEl.textContent = "Server's live. Redirecting…";
+    statusEl.textContent = "";
+    setTimeout(() => { window.location.href = TARGET_URL; }, 600);
+    return;
+  }
+  waited += POLL_INTERVAL_MS;
+  if (waited >= MAX_WAIT_MS) {
+    clearInterval(tickTimer);
+    headingEl.textContent = "Taking longer than expected";
+    statusEl.textContent = "You can keep playing, or try opening it directly.";
+    return;
+  }
+  setTimeout(poll, POLL_INTERVAL_MS);
+}
+skipEl.addEventListener('click', () => { window.location.href = TARGET_URL; });
+poll();
+
+/* ---------------- GAME: dodge the vol spike ---------------- */
+const canvas = document.getElementById('game');
+const ctx = canvas.getContext('2d');
+const scoreEl = document.getElementById('score');
+
+function resize() {
+  const ratio = window.devicePixelRatio || 1;
+  const w = canvas.clientWidth;
+  const h = 260;
+  canvas.width = w * ratio;
+  canvas.height = h * ratio;
+  ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
+  W = w; H = h;
+}
+let W, H;
+window.addEventListener('resize', resize);
+
+const player = { x: 55, y: 0, vy: 0, r: 13, onGround: true, ducking: false };
+const gravity = 0.55;
+const jumpForce = -9.5;
+let groundY;
+let spikes = [];
+let particles = [];
+let priceLine = [];
+let frame = 0;
+let score = 0;
+let gameSpeed = 2.2;
+let dead = false;
+let nextSpikeFrame = 90;
+
+function resetGame() {
+  resize();
+  groundY = H - 30;
+  player.y = groundY;
+  player.vy = 0;
+  player.onGround = true;
+  spikes = [];
+  particles = [];
+  score = 0;
+  gameSpeed = 2.2;
+  dead = false;
+  frame = 0;
+  nextSpikeFrame = 90;
+  priceLine = Array.from({length: Math.ceil(W)}, (_, i) => H * 0.45 + Math.sin(i * 0.05) * 12);
+}
+
+function jump() {
+  if (dead) { resetGame(); return; }
+  if (player.onGround && !player.ducking) {
+    player.vy = jumpForce;
+    player.onGround = false;
+    for (let i = 0; i < 8; i++) {
+      particles.push({
+        x: player.x, y: player.y, vx: (Math.random()-0.5)*3, vy: Math.random()*1.5,
+        life: 20, color: '#3B82F6'
+      });
+    }
+  }
+}
+function duckStart() { if (!dead) player.ducking = true; }
+function duckEnd() { player.ducking = false; }
+
+canvas.addEventListener('mousedown', jump);
+
+let touchStartY = null;
+let touchClassified = null; // null | 'jump' | 'duck' | 'tap'
+const SWIPE_THRESHOLD = 22;
+
+canvas.addEventListener('touchstart', (e) => {
+  e.preventDefault();
+  touchStartY = e.touches[0].clientY;
+  touchClassified = null;
+}, {passive:false});
+
+canvas.addEventListener('touchmove', (e) => {
+  e.preventDefault();
+  if (touchStartY === null || touchClassified) return;
+  const dy = e.touches[0].clientY - touchStartY;
+  if (dy < -SWIPE_THRESHOLD) {
+    touchClassified = 'jump';
+    jump();
+  } else if (dy > SWIPE_THRESHOLD) {
+    touchClassified = 'duck';
+    duckStart();
+  }
+}, {passive:false});
+
+canvas.addEventListener('touchend', (e) => {
+  e.preventDefault();
+  if (touchClassified === 'duck') {
+    duckEnd();
+  } else if (touchClassified === null) {
+    jump(); // no meaningful swipe — treat as a plain tap
+  }
+  touchStartY = null;
+  touchClassified = null;
+}, {passive:false});
+
+const jumpBtn = document.getElementById('btn-jump');
+const duckBtn = document.getElementById('btn-duck');
+jumpBtn.addEventListener('click', jump);
+duckBtn.addEventListener('mousedown', duckStart);
+duckBtn.addEventListener('mouseup', duckEnd);
+duckBtn.addEventListener('mouseleave', duckEnd);
+duckBtn.addEventListener('touchstart', (e) => { e.preventDefault(); duckStart(); }, {passive:false});
+duckBtn.addEventListener('touchend', (e) => { e.preventDefault(); duckEnd(); }, {passive:false});
+
+window.addEventListener('keydown', (e) => {
+  if (e.code === 'Space' || e.code === 'ArrowUp') { e.preventDefault(); jump(); }
+  if (e.code === 'ArrowDown') { e.preventDefault(); duckStart(); }
+});
+window.addEventListener('keyup', (e) => { if (e.code === 'ArrowDown') duckEnd(); });
+
+function spawnSpike() {
+  const down = Math.random() < 0.5;
+  const type = Math.random() < 0.5 ? 'jump' : 'duck';
+  if (type === 'jump') {
+    const bodyH = 16 + Math.random() * 14;
+    const wickH = 8 + Math.random() * 8;
+    spikes.push({ type, x: W + 10, w: 10, bodyH, wickH, down });
+  } else {
+    const bodyH = 14 + Math.random() * 8;
+    const clearance = player.r * 1.2;
+    const wickH = 14 + Math.random() * 10;
+    const bottomY = groundY - clearance;
+    spikes.push({ type, x: W + 10, w: 10, bodyH, wickH, down, topY: bottomY - wickH - bodyH, clearance });
+  }
+}
+
+function update() {
+  frame++;
+  if (!dead) {
+    gameSpeed = 2.2 + Math.min(score, 60) * 0.025;
+    player.vy += gravity;
+    player.y += player.vy;
+    if (player.y >= groundY) { player.y = groundY; player.vy = 0; player.onGround = true; }
+
+    if (frame >= nextSpikeFrame) {
+      spawnSpike();
+      const gapFrames = Math.max(70, 130 - Math.floor(score * 0.8));
+      nextSpikeFrame = frame + gapFrames;
+    }
+
+    spikes.forEach(s => s.x -= gameSpeed);
+    spikes = spikes.filter(s => s.x > -20);
+
+    const playerCy = player.y - 6;
+    const playerHalfH = player.ducking ? player.r * 0.45 : player.r;
+    const playerTop = playerCy - playerHalfH;
+    const playerBottom = playerCy + playerHalfH;
+
+    spikes.forEach(s => {
+      const withinX = player.x + player.r * 0.6 > s.x - s.w/2 && player.x - player.r * 0.6 < s.x + s.w/2;
+      if (!withinX) return;
+      let hit = false;
+      if (s.type === 'jump') {
+        const spikeTop = groundY - (s.bodyH + s.wickH);
+        hit = playerBottom > spikeTop;
+      } else {
+        const wickBottom = groundY - s.clearance;
+        hit = playerTop < wickBottom;
+      }
+      if (hit) {
+        dead = true;
+        for (let i = 0; i < 20; i++) {
+          particles.push({
+            x: player.x, y: playerCy,
+            vx: (Math.random()-0.5)*6, vy: (Math.random()-0.5)*6,
+            life: 30, color: '#EF4444'
+          });
+        }
+      }
+    });
+
+    priceLine.shift();
+    const last = priceLine[priceLine.length - 1];
+    priceLine.push(Math.max(20, Math.min(H*0.7, last + (Math.random()-0.5) * 14)));
+
+    if (frame % 6 === 0) score += 1;
+  }
+
+  particles.forEach(p => { p.x += p.vx; p.y += p.vy; p.vy += 0.1; p.life--; });
+  particles = particles.filter(p => p.life > 0);
+
+  scoreEl.textContent = 'P&L: ' + (score * 12) + (dead ? ' (closed)' : '');
+}
+
+function draw() {
+  ctx.clearRect(0, 0, W, H);
+
+  // Background is transparent to show grid-bg from div
+  ctx.strokeStyle = 'rgba(59,130,246,0.25)';
+  ctx.lineWidth = 2;
+  ctx.beginPath();
+  priceLine.forEach((y, i) => { i === 0 ? ctx.moveTo(i, y) : ctx.lineTo(i, y); });
+  ctx.stroke();
+
+  ctx.strokeStyle = 'rgba(255,255,255,0.05)';
+  ctx.beginPath();
+  ctx.moveTo(0, groundY + player.r + 2);
+  ctx.lineTo(W, groundY + player.r + 2);
+  ctx.stroke();
+
+  spikes.forEach(s => {
+    const color = s.down ? '#EF4444' : '#22C55E';
+    ctx.fillStyle = color;
+    ctx.strokeStyle = color;
+    ctx.lineWidth = 2;
+    if (s.type === 'jump') {
+      const bodyTop = groundY - s.bodyH;
+      const wickTop = bodyTop - s.wickH;
+      ctx.beginPath();
+      ctx.moveTo(s.x, bodyTop);
+      ctx.lineTo(s.x, wickTop);
+      ctx.stroke();
+      ctx.fillRect(s.x - s.w/2, bodyTop, s.w, s.bodyH);
+    } else {
+      const bodyTop = s.topY;
+      const bodyBottom = bodyTop + s.bodyH;
+      const wickBottom = groundY - s.clearance;
+      ctx.fillRect(s.x - s.w/2, bodyTop, s.w, s.bodyH);
+      ctx.beginPath();
+      ctx.moveTo(s.x, bodyBottom);
+      ctx.lineTo(s.x, wickBottom);
+      ctx.stroke();
+    }
+  });
+
+  particles.forEach(p => {
+    ctx.globalAlpha = Math.max(p.life / 30, 0);
+    ctx.fillStyle = p.color;
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, 2.5, 0, Math.PI*2);
+    ctx.fill();
+  });
+  ctx.globalAlpha = 1;
+
+  ctx.save();
+  ctx.translate(player.x, player.y - 6);
+  const pulse = dead ? 0 : Math.sin(frame*0.2)*1.5;
+  const squash = player.ducking ? 0.5 : 1;
+  const rx = player.ducking ? player.r * 1.35 : player.r;
+  ctx.fillStyle = dead ? '#EF4444' : '#3B82F6';
+  ctx.shadowColor = dead ? '#EF4444' : '#3B82F6';
+  ctx.shadowBlur = 15;
+  ctx.beginPath();
+  ctx.ellipse(0, pulse + player.r * (1 - squash), rx, player.r * squash, 0, 0, Math.PI*2);
+  ctx.fill();
+  ctx.font = '700 9px "Inter", sans-serif';
+  ctx.fillStyle = '#0B0E14';
+  ctx.textAlign = 'center';
+  ctx.fillText('G', 0, pulse + player.r * (1 - squash) + 3);
+  ctx.restore();
+
+  if (dead) {
+    ctx.fillStyle = 'rgba(11,14,20,0.8)';
+    ctx.fillRect(0, 0, W, H);
+    ctx.fillStyle = '#FFFFFF';
+    ctx.font = '700 16px "Inter", sans-serif';
+    ctx.textAlign = 'center';
+    ctx.fillText('Position stopped out', W/2, H/2 - 10);
+    ctx.font = '500 12px "JetBrains Mono", monospace';
+    ctx.fillStyle = '#94A3B8';
+    ctx.fillText('Tap to re-enter', W/2, H/2 + 14);
+  }
+}
+
+function loop() {
+  update();
+  draw();
+  requestAnimationFrame(loop);
+}
+
+resetGame();
+loop();
+</script>
+</body>
+</html>

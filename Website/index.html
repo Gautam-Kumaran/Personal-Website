@@ -152,8 +152,9 @@
 <main class="pt-16">
 <!-- Hero Section -->
 <section class="relative overflow-hidden py-20 flex items-center" id="home">
-<div class="max-w-container-max mx-auto px-gutter relative z-10 flex justify-center">
-<div class="space-y-stack-lg max-w-3xl w-full text-center">
+<div class="max-w-container-max mx-auto px-gutter relative z-10">
+<div class="grid lg:grid-cols-2 gap-stack-xl items-center">
+<div class="space-y-stack-lg text-center lg:text-left">
 <div class="space-y-stack-sm">
 <span class="font-label-mono text-label-mono text-primary uppercase tracking-[0.2em]">Project Portfolio</span>
 <h1 class="font-headline-xl text-headline-xl md:text-headline-xl text-text-primary leading-none">
@@ -161,8 +162,8 @@
                         </h1>
 <h2 class="font-headline-lg text-headline-lg text-secondary">Finance and Data Projects</h2>
 </div>
-<p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl mx-auto">A collection of projects I built to study stock-market behaviour, options, and historical price data using Python.</p>
-<div class="flex flex-wrap gap-stack-md pt-stack-md justify-center">
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl mx-auto lg:mx-0">A collection of projects I built to study stock-market behaviour, options, and historical price data using Python.</p>
+<div class="flex flex-wrap gap-stack-md pt-stack-md justify-center lg:justify-start">
 <a class="px-stack-lg py-3 bg-text-primary text-primary-container font-button text-button rounded-lg hover:opacity-90 transition-opacity" href="#projects">
                             View Projects
                         </a>
@@ -170,6 +171,15 @@
 <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">code</span>
                             GitHub
                         </a>
+</div>
+</div>
+<div class="glass-panel rounded-xl p-stack-lg relative overflow-hidden">
+<div class="absolute top-0 left-0 w-1 h-full bg-primary/40"></div>
+<div class="flex items-center gap-3 mb-stack-sm">
+<span class="material-symbols-outlined text-primary text-lg" style="font-variation-settings: 'FILL' 1;">person</span>
+<span class="font-label-mono text-label-mono text-primary uppercase tracking-[0.2em]">About Me</span>
+</div>
+<p class="font-body-sm text-on-surface-variant leading-relaxed">I'd rather build the thing than read about how it's built. I traded options, studied entropy in stock markets, and dug through galaxy survey data. My approach is always the same: break a large, intimidating question into small enough pieces that each one is easy to attack on its own. I want to spend my career doing exactly that, as a quant.</p>
 </div>
 </div>
 </div>
@@ -191,9 +201,6 @@
 <div class="absolute inset-0 bg-primary/10 group-hover:bg-primary/5 transition-colors"></div>
 <div class="absolute inset-0 flex items-center justify-center">
 <span class="material-symbols-outlined text-5xl text-primary opacity-20 group-hover:opacity-40 transition-opacity">blur_on</span>
-</div>
-<div class="absolute top-4 right-4">
-<span class="px-2 py-1 bg-status-success/20 text-status-success font-label-mono text-[10px] rounded border border-status-success/30">COMPLETED</span>
 </div>
 </div>
 <div class="p-stack-lg flex-grow flex flex-col">
@@ -217,8 +224,8 @@
 <div class="absolute inset-0 flex items-center justify-center">
 <span class="material-symbols-outlined text-5xl text-secondary opacity-20 group-hover:opacity-40 transition-opacity">terminal</span>
 </div>
-<div class="absolute top-4 right-4 flex gap-2">
-<span class="px-2 py-1 bg-status-success/20 text-status-success font-label-mono text-[10px] rounded border border-status-success/30">DEPLOYED</span>
+<div class="absolute top-4 right-4">
+<a class="inline-flex items-center gap-2 px-3.5 py-2 bg-status-success text-surface-container-lowest rounded-full font-button text-xs font-semibold shadow-[0_0_20px_-2px_rgba(16,185,129,0.7)] hover:shadow-[0_0_26px_-2px_rgba(16,185,129,0.9)] hover:brightness-110 transition-all" href="loading.html?target=https%3A%2F%2Fnifty50-returns-analysis.onrender.com%2F" onclick="event.stopPropagation()" rel="noopener noreferrer" target="_blank"><span class="w-1.5 h-1.5 rounded-full bg-surface-container-lowest animate-pulse"></span>Live Demo</a>
 </div>
 </div>
 <div class="p-stack-lg flex-grow flex flex-col">
@@ -232,7 +239,7 @@
 </div>
 <p class="font-body-sm text-on-surface-variant italic mb-stack-sm">Expiry-week risk isn't more frequent, but it does skew more bearish.</p>
 </div>
-<div class="mt-auto pt-stack-md flex flex-wrap gap-2"><span class="px-2 py-1 border border-outline-variant rounded font-label-mono text-[10px] text-on-surface-variant">Python</span><span class="px-2 py-1 border border-outline-variant rounded font-label-mono text-[10px] text-on-surface-variant">Flask</span><span class="px-2 py-1 border border-outline-variant rounded font-label-mono text-[10px] text-on-surface-variant">PostgreSQL</span><span class="px-2 py-1 border border-outline-variant rounded font-label-mono text-[10px] text-on-surface-variant">JavaScript</span></div><div class="flex flex-wrap gap-3 mt-4"><a class="text-xs font-button text-primary hover:underline" href="https://github.com/Gautam-Kumaran/Nifty50-Returns-analysis" onclick="event.stopPropagation()" rel="noopener noreferrer" target="_blank">GitHub</a><a class="text-xs font-button text-primary hover:underline" href="https://nifty50-returns-analysis.onrender.com/" onclick="event.stopPropagation()" rel="noopener noreferrer" target="_blank">Live Demo</a></div>
+<div class="mt-auto pt-stack-md flex flex-wrap gap-2"><span class="px-2 py-1 border border-outline-variant rounded font-label-mono text-[10px] text-on-surface-variant">Python</span><span class="px-2 py-1 border border-outline-variant rounded font-label-mono text-[10px] text-on-surface-variant">Flask</span><span class="px-2 py-1 border border-outline-variant rounded font-label-mono text-[10px] text-on-surface-variant">PostgreSQL</span><span class="px-2 py-1 border border-outline-variant rounded font-label-mono text-[10px] text-on-surface-variant">JavaScript</span></div><div class="flex flex-wrap gap-3 mt-4"><a class="text-xs font-button text-primary hover:underline" href="https://github.com/Gautam-Kumaran/Nifty50-Returns-analysis" onclick="event.stopPropagation()" rel="noopener noreferrer" target="_blank">GitHub</a></div>
 </div>
 </div>
 <!-- Project 3: NSE Option Strategy Analyzer -->
@@ -241,9 +248,6 @@
 <div class="absolute inset-0 bg-tertiary/10 group-hover:bg-tertiary/5 transition-colors"></div>
 <div class="absolute inset-0 flex items-center justify-center">
 <span class="material-symbols-outlined text-5xl text-tertiary opacity-20 group-hover:opacity-40 transition-opacity">query_stats</span>
-</div>
-<div class="absolute top-4 right-4">
-<span class="px-2 py-1 bg-status-wip/20 text-status-wip font-label-mono text-[10px] rounded border border-status-wip/30">WIP</span>
 </div>
 </div>
 <div class="p-stack-lg flex-grow flex flex-col">
