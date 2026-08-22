@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Factor Regression and Hedge Research: Gautam Kumaran</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/><style>
+:root{--bg:#131315;--panel:#0f1b2d;--line:#2f3743;--text:#fff;--muted:#c5c6cd;--muted-2:#8f9097;--primary:#b9c7e4;--primary-container:#0a192f;--success:#10b981;--warning:#f59e0b}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;padding-top:64px;background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}h1,h2,h3{font-family:'Outfit',sans-serif;font-weight:600;letter-spacing:-.01em;margin:0}.mono{font-family:'JetBrains Mono',monospace}a{color:inherit}.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+nav{position:fixed;top:0;left:0;width:100%;z-index:50;background:rgba(10,25,47,.86);backdrop-filter:blur(12px);border-bottom:1px solid rgba(68,71,77,.3)}nav .wrap{height:64px;display:flex;align-items:center;justify-content:space-between}.brand{font-family:'Outfit',sans-serif;font-weight:700;font-size:24px;color:#fff;text-decoration:none}.navlinks{display:flex;gap:32px;align-items:center;font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--muted)}.navlinks a{text-decoration:none;transition:color .2s}.navlinks a:hover{color:var(--primary)}
+header.hero{padding:80px 0 64px;border-bottom:1px solid rgba(68,71,77,.25);background:linear-gradient(180deg,rgba(10,25,47,.16),rgba(19,19,21,0))}.eyebrow-row{display:flex;align-items:center;gap:12px;margin-bottom:18px;flex-wrap:wrap}.eyebrow{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--primary)}.status-pill{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--success);border:1px solid rgba(16,185,129,.35);background:rgba(16,185,129,.12);padding:4px 9px;border-radius:4px}h1.title{font-family:'Outfit',sans-serif;font-size:clamp(38px,5vw,56px);line-height:1.08;max-width:17ch;color:#fff}.dek{color:var(--muted);font-size:18px;max-width:64ch;margin-top:20px}.hero-actions{display:flex;gap:14px;margin-top:28px;flex-wrap:wrap}.btn{font-family:'Inter',sans-serif;font-size:14px;font-weight:600;text-decoration:none;padding:12px 18px;border-radius:4px;display:inline-flex;align-items:center;gap:8px;transition:opacity .2s,background .2s,border-color .2s}.btn-primary{background:#fff;color:var(--primary-container)}.btn-primary:hover{opacity:.9}.btn-ghost{border:1px solid var(--line);color:#fff;background:transparent}.btn-ghost:hover{background:rgba(255,255,255,.04);border-color:var(--primary)}
+section{padding:64px 0;border-bottom:1px solid rgba(68,71,77,.2)}section:nth-of-type(even){background:#0e0e10}.kicker{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--primary);margin-bottom:12px}h2.sec-title{font-family:'Outfit',sans-serif;font-size:clamp(26px,3vw,34px);max-width:26ch;margin-bottom:14px;color:#fff}.sec-sub{color:var(--muted);max-width:68ch;font-size:16px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:36px}.card,.panel{background:rgba(10,25,47,.58);border:1px solid rgba(68,71,77,.42);border-radius:8px}.card{padding:28px}.card h3{font-family:'Outfit',sans-serif;font-size:20px;margin-bottom:10px;color:#fff}.card p{color:var(--muted);font-size:14.5px;margin:0}.card ul{margin:12px 0 0;padding-left:18px;color:var(--muted);font-size:14px}.card ul li{margin-bottom:5px}
+.method-list{margin-top:40px;display:flex;flex-direction:column}.method-row{display:grid;grid-template-columns:60px 1fr;gap:22px;padding:28px 0;border-top:1px solid rgba(68,71,77,.35)}.method-row:last-child{border-bottom:1px solid rgba(68,71,77,.35)}.method-num{font-family:'JetBrains Mono',monospace;color:var(--primary);font-size:13px;padding-top:3px}.method-row h3{font-family:'Outfit',sans-serif;font-size:20px;margin-bottom:8px;color:#fff}.method-row p{color:var(--muted);font-size:14.5px;max-width:74ch;margin:0}.method-tag{display:inline-block;margin-top:12px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--warning);background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.3);padding:4px 9px;border-radius:4px}
+.statband{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:8px;overflow:hidden;margin-top:40px}.stat{background:var(--primary-container);padding:26px 22px}.stat .num{font-family:'Outfit',sans-serif;font-size:30px;color:var(--primary);font-weight:600}.stat .lbl{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);margin-top:7px}
+.result-head{margin-bottom:14px;display:flex;align-items:flex-start;justify-content:space-between;gap:16px}.result-head h3{font-family:'Outfit',sans-serif;font-size:21px;color:#fff}.fig-tag{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted-2);display:block;margin-top:4px}.panel{padding:28px}.panel p{color:var(--muted);font-size:14.5px;margin:0 0 10px}.panel p:last-child{margin-bottom:0}.panel b{color:#fff}.num-inline{color:var(--primary);font-family:'JetBrains Mono',monospace}.num-inline.warn{color:var(--warning)}
+.result-block{margin-top:48px}.result-block:first-child{margin-top:40px}
+.help-btn{flex-shrink:0;width:26px;height:26px;border-radius:50%;border:1px solid var(--line);background:rgba(10,25,47,.5);color:var(--muted);font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:border-color .2s,color .2s}.help-btn:hover{border-color:var(--primary);color:var(--primary)}
+.help-panel{display:none;margin-top:14px;padding:18px 20px;background:rgba(10,25,47,.4);border:1px solid rgba(68,71,77,.35);border-radius:6px}.help-panel.open{display:block}.help-panel dl{margin:0}.help-panel dt{font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--primary);margin-top:12px}.help-panel dt:first-child{margin-top:0}.help-panel dd{margin:4px 0 0;font-size:13.5px;color:var(--muted);line-height:1.5}
+table.datatable{border-collapse:separate;border-spacing:0;width:100%;font-family:'JetBrains Mono',monospace;font-size:13px;margin-top:6px}table.datatable th{color:var(--muted-2);font-weight:500;padding:10px 12px;text-align:left;border-bottom:1px solid rgba(68,71,77,.4)}table.datatable td{padding:10px 12px;text-align:left;color:#fff;border-bottom:1px solid rgba(68,71,77,.2)}table.datatable tr:last-child td{border-bottom:none}.table-caption{color:var(--muted-2);font-size:12px;margin-top:12px;font-family:'JetBrains Mono',monospace}
+footer{padding:56px 0 64px;background:var(--primary-container);border-top:1px solid rgba(68,71,77,.3)}.footer-grid{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:22px}.footer-note{color:var(--muted);font-size:12px;font-family:'JetBrains Mono',monospace;margin-top:32px}
+@media(max-width:820px){body{padding-top:60px}nav .wrap{height:60px}.brand{font-size:20px}.navlinks{gap:16px;font-size:11px;overflow-x:auto}header.hero{padding:60px 0 48px}.grid3{grid-template-columns:1fr}.statband{grid-template-columns:repeat(2,1fr)}.method-row{grid-template-columns:36px 1fr}.wrap{padding:0 20px}}
+.back-link{font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:500;color:var(--primary);text-decoration:none}.back-link:hover{color:#fff}
+</style></head>
+<body>
+<nav>
+<div class="wrap"><a class="brand back-link" href="index.html">← Back</a>
+<div class="navlinks">
+<a href="#eli5">In plain terms</a>
+<a href="#overview">Overview</a>
+<a href="#method">Method</a>
+<a href="#results">Results</a>
+<a href="#conclusions">Conclusions</a>
+</div>
+</div>
+</nav>
+<header class="hero">
+<div class="wrap">
+<div class="eyebrow-row">
+<span class="eyebrow">Independent Research · Quantitative Finance</span>
+<span class="status-pill">● Completed</span>
+</div>
+<h1 class="title">Factor Regression and Hedge Research</h1>
+<p class="dek">Estimating market and sector betas for three NSE stocks, and checking whether a beta-sized Nifty futures position actually works as a hedge.</p>
+<div class="hero-actions">
+<a class="btn btn-primary" href="https://github.com/Gautam-Kumaran/Factor-Regression-Hedge-Research" rel="noopener noreferrer" target="_blank">View source on GitHub →</a>
+<a class="btn btn-ghost" href="#conclusions">Jump to conclusions</a>
+</div>
+</div>
+</header>
+<section id="eli5">
+<div class="wrap">
+<div class="kicker">In plain terms</div>
+<h2 class="sec-title">What this project is actually asking</h2>
+<div class="panel" style="margin-top:24px;">
+<p style="font-size:15.5px;">If you own a stock and the whole market drops, your stock usually drops too, just because it's part of the market. A "hedge" is a separate bet, in the opposite direction, sized so that market-wide move gets cancelled out. The sizing number is called beta: how much the stock tends to move for every 1% the market moves. Each stock's single-factor beta below is measured against Nifty 50, the market itself.</p>
+<p style="font-size:15.5px;">This project asks two things. <b>First:</b> for three NSE stocks, how much of their daily movement actually comes from the broad market versus their own sector index? <b>Second:</b> if you built a hedge sized off that market beta, what would it actually buy you?</p>
+<p style="font-size:15.5px; margin-bottom:0;">The answer to the second question turned out to be the more interesting one: a hedge like this cancels out both gains and losses in roughly equal proportion, not just the losses. That makes it a tool for managing risk, not a way to make money on its own, and the project ends up being as much about that distinction as about the regression itself.</p>
+</div>
+</div>
+</section>
+<section id="overview">
+<div class="wrap">
+<div class="kicker">Overview</div>
+<h2 class="sec-title">CAPM betas, sector betas, and what each is actually good for</h2>
+<p class="sec-sub">Three NSE stocks were regressed against Nifty 50 alone, then against Nifty 50 and their own sector index together, to see how much of each stock's return market and sector separately explain, and which one a Nifty futures hedge should actually be sized on.</p>
+<div class="grid3">
+<div class="card">
+<h3>The problem</h3>
+<p>Does a stock's daily return come mostly from the broad market, or mostly from its sector? And does a Nifty-sized hedge actually make sense given the answer?</p>
+</div>
+<div class="card">
+<h3>What was built</h3>
+<p>A Fyers-based data pipeline, hand-rolled OLS (no statsmodels), and a full diagnostic suite: standard errors, t-stats, R², VIF, and condition number.</p>
+</div>
+<div class="card">
+<h3>Universe</h3>
+<p>HDFCBANK, TATASTEEL, HINDUNILVR against Nifty 50, Nifty Bank, Nifty Metal, and Nifty FMCG.</p>
+<ul>
+<li>Daily log returns, 2024-01-01 to 2026-07-01</li>
+</ul>
+</div>
+</div>
+<div class="statband">
+<div class="stat"><div class="num">3</div><div class="lbl">STOCKS, EACH WITH A SECTOR PAIR</div></div>
+<div class="stat"><div class="num">618</div><div class="lbl">TRADING DAYS PER SERIES</div></div>
+<div class="stat"><div class="num">1 &amp; 2</div><div class="lbl">FACTOR REGRESSION VARIANTS</div></div>
+<div class="stat"><div class="num">5</div><div class="lbl">DIAGNOSTICS COMPUTED BY HAND</div></div>
+</div>
+</div>
+</section>
+<section id="method">
+<div class="wrap">
+<div class="kicker">Methodology</div>
+<h2 class="sec-title">From raw prices to a hedge ratio</h2>
+<p class="sec-sub">Python, using pandas, NumPy, and the Fyers API. OLS, standard errors, and diagnostics were all implemented from the normal equations rather than pulled from statsmodels.</p>
+<div class="method-list">
+<div class="method-row">
+<div class="method-num">01</div>
+<div>
+<h3>Data source: NSE bhavcopy to Fyers</h3>
+<p>Data collection started on NSE bhavcopy archives, then moved to the Fyers API partway through. Betas on Fyers data matched the original bhavcopy betas closely, confirming the migration didn't introduce errors. Fyers auth runs on a token rather than IP, and its OHLCV history skips bhavcopy's index-naming quirks.</p>
+</div>
+</div>
+<div class="method-row">
+<div class="method-num">02</div>
+<div>
+<h3>Corporate action handling</h3>
+<p>HDFCBANK's 1:1 bonus (ex-date 2025-08-26) gets auto-adjusted by Fyers. HINDUNILVR's demerger (ex-date 2025-12-05) isn't adjusted, so the ~-3.44% drop across that date stays in the data, since it reflects a real transfer of value out of the stock rather than a data error.</p>
+</div>
+</div>
+<div class="method-row">
+<div class="method-num">03</div>
+<div>
+<h3>Single and two-factor OLS, from the normal equations</h3>
+<p>Each stock was regressed against Nifty 50 alone, then against Nifty 50 and its own sector index together. Beta, residuals, and fitted values all come from solving (XᵀX)β = XᵀY directly with NumPy, rather than a regression library.</p>
+</div>
+</div>
+<div class="method-row">
+<div class="method-num">04</div>
+<div>
+<h3>Diagnostics: SE, t-stats, R², VIF, condition number</h3>
+<p>Standard errors come from σ²(XᵀX)⁻¹, t-stats from beta divided by SE, VIF from regressing each factor on the others and applying 1/(1−R²), and condition number from the eigenvalues of XᵀX. All five were built from scratch to check exactly how reliable each regression's coefficients were, not just what they were.</p>
+<span class="method-tag">Two factors are correlated by construction: these stocks are large weights in their own sector indices</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="results">
+<div class="wrap">
+<div class="kicker">Results</div>
+<h2 class="sec-title">Sector explains most of it, market mostly doesn't</h2>
+<p class="sec-sub">Single-factor betas are clean estimates against Nifty 50 (market) alone, and are the right input for a Nifty hedge. The two-factor regression shows why: sector, not market, is doing the real work for two of the three stocks.</p>
+<div class="result-block">
+<div class="result-head">
+<h3>Single-factor (CAPM) betas against the market</h3>
+<button class="help-btn" data-help="help-beta" type="button">?</button>
+</div>
+<div class="panel">
+<div class="help-panel" id="help-beta">
+<dl>
+<dt>Beta</dt><dd>How much the stock moves for every 1% the market moves. Above 1 means more volatile than the market, below 1 means less.</dd>
+<dt>SE (standard error)</dt><dd>How much this beta would wobble if re-estimated on a different sample. Smaller is more precise.</dd>
+<dt>t-stat</dt><dd>Beta divided by SE. Above roughly 2 in magnitude means the beta is statistically distinguishable from zero.</dd>
+<dt>R²</dt><dd>Share of the stock's daily return variance explained by the market alone. Higher means the market matters more for this stock.</dd>
+</dl>
+</div>
+<table class="datatable">
+<tr><th>Stock</th><th>Beta</th><th>SE</th><th>t-stat</th><th>R²</th></tr>
+<tr><td>HDFCBANK</td><td>1.056</td><td>0.0433</td><td>24.40</td><td>0.491</td></tr>
+<tr><td>TATASTEEL</td><td>1.354</td><td>0.0657</td><td>20.61</td><td>0.408</td></tr>
+<tr><td>HINDUNILVR</td><td>0.447</td><td>0.0557</td><td>8.03</td><td>0.095</td></tr>
+</table>
+<p style="margin-top:16px;">TATASTEEL's beta is significantly higher than HDFCBANK's, with t ≈ <b class="num-inline">3.79</b> on the difference. HINDUNILVR's beta sits confidently below 1, with t ≈ <b class="num-inline">9.93</b> on the distance from 1.</p>
+</div>
+</div>
+<div class="result-block">
+<div class="result-head">
+<h3>Two-factor regression: sector dominates for two of three stocks</h3>
+<button class="help-btn" data-help="help-twofactor" type="button">?</button>
+</div>
+<div class="panel">
+<div class="help-panel" id="help-twofactor">
+<dl>
+<dt>β market / β sector</dt><dd>Each factor's coefficient, holding the other constant. Not directly comparable to the single-factor beta above, since each now reflects only the independent effect of that factor.</dd>
+<dt>t market / t sector</dt><dd>Same idea as single-factor t-stats. Below ~2 in magnitude means that factor isn't adding statistically distinguishable explanatory power once the other factor is included.</dd>
+<dt>R²</dt><dd>Share of variance explained by market and sector together.</dd>
+<dt>VIF</dt><dd>How much a coefficient's uncertainty is inflated by overlap with the other regressor. Below 5 is usually fine, above 10 is a common concern threshold.</dd>
+<dt>Condition number</dt><dd>A single measure of how unstable the regression's matrix math is overall. Above roughly 30 is a common concern threshold.</dd>
+</dl>
+</div>
+<table class="datatable">
+<tr><th>Stock</th><th>β market</th><th>β sector</th><th>t market</th><th>t sector</th><th>R²</th><th>VIF</th><th>Cond #</th></tr>
+<tr><td>HDFCBANK</td><td>-0.042</td><td>1.030</td><td>-0.55</td><td>16.43</td><td>0.647</td><td>4.42</td><td>304.6</td></tr>
+<tr><td>TATASTEEL</td><td>-0.056</td><td>1.071</td><td>-1.01</td><td>35.42</td><td>0.805</td><td>2.11</td><td>181.9</td></tr>
+<tr><td>HINDUNILVR</td><td>-0.253</td><td>1.203</td><td><b class="num-inline warn">-5.50</b></td><td>26.81</td><td>0.583</td><td>1.48</td><td>173.0</td></tr>
+</table>
+<p style="margin-top:16px;">HDFCBANK and TATASTEEL's market coefficients both sit below |t|=2 once sector is in the model. Sector is carrying almost the entire regression, and the small negative market coefficient is what shows up when two correlated regressors compete for the same variance.</p>
+<p>HINDUNILVR breaks that pattern. Its market coefficient stays significant (t = -5.50) even with sector included, meaning its low single-factor beta is really two effects netting out: strong positive co-movement with its sector, plus a separate, real pull against the broad market.</p>
+</div>
+</div>
+<div class="result-block">
+<div class="result-head">
+<h3>VIF and condition number disagree</h3>
+<button class="help-btn" data-help="help-vifcond" type="button">?</button>
+</div>
+<div class="panel">
+<div class="help-panel" id="help-vifcond">
+<dl>
+<dt>Why they can disagree</dt><dd>VIF checks each regressor against the others one at a time. Condition number looks at the whole design matrix at once, including the constant term, so it can flag instability VIF misses.</dd>
+<dt>Rule of thumb</dt><dd>VIF above 5–10, or condition number above roughly 30, are the usual thresholds worth treating as a caution flag.</dd>
+</dl>
+</div>
+<p>VIF (4.42, 2.11, 1.48) stayed under the usual 5–10 concern range for all three stocks. Condition numbers told a different story, all sitting above <b class="num-inline warn">170</b> against a typical threshold of around 30. These two diagnostics measure related but distinct things.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="conclusions">
+<div class="wrap">
+<div class="kicker">Conclusions</div>
+<h2 class="sec-title">A hedge is a risk tool, not a strategy</h2>
+<div class="grid3">
+<div class="card">
+<h3>Sector drives HDFCBANK and TATASTEEL</h3>
+<p>Once sector is in the regression, market adds nothing statistically for these two stocks. A sector-instrument hedge (Bank Nifty, Nifty Metal) would likely outperform a Nifty hedge for them, though that wasn't built here, since it targets a different underlying instrument.</p>
+</div>
+<div class="card">
+<h3>HINDUNILVR is a real exception</h3>
+<p>Its market sensitivity is real, not a multicollinearity artifact, and nets two offsetting effects rather than reflecting one weak relationship. Its hedge ratio is correct for Nifty, but the exposure underneath it is less simple than the number alone suggests.</p>
+</div>
+<div class="card">
+<h3>A full hedge removes upside with downside</h3>
+<p>At R² of 0.58–0.80, a beta-sized hedge cuts a large share of both gains and losses. It has no edge built in, useful for isolating a stock-specific view or cutting volatility, but not for generating returns on its own.</p>
+</div>
+</div>
+</div>
+</section>
+<footer>
+<div class="wrap">
+<div class="footer-grid">
+<div>
+<h3 style="font-size:19px;">Read the full writeup</h3>
+<p style="color:var(--muted); max-width:50ch; margin-top:8px; font-size:14.5px;">Full README with data source notes, corporate action handling, and known limitations is in the repository.</p>
+</div>
+<div class="hero-actions">
+<a class="btn btn-primary" href="https://github.com/Gautam-Kumaran/Factor-Regression-Hedge-Research" rel="noopener noreferrer" target="_blank">GitHub repository →</a>
+</div>
+</div>
+<div class="footer-note">Python · pandas · NumPy · Fyers API · Gautam Kumaran</div>
+</div>
+</footer>
+<script>
+document.querySelectorAll('.help-btn').forEach(function(btn){
+  btn.addEventListener('click', function(){
+    var panel = document.getElementById(btn.getAttribute('data-help'));
+    if(panel){ panel.classList.toggle('open'); }
+  });
+});
+</script>
+</body>
+</html>

@@ -192,9 +192,9 @@
 <span class="font-label-mono text-label-mono text-primary uppercase">Portfolio</span>
 <h3 class="font-headline-lg text-headline-lg text-text-primary">Selected Projects</h3>
 </div>
-<p class="font-body-sm text-on-surface-variant max-w-xs text-right hidden md:block">Three projects covering stock-market behaviour, options, and historical market data.</p>
+<p class="font-body-sm text-on-surface-variant max-w-xs text-right hidden md:block">Four projects covering stock-market behaviour, options, factor regression, and historical market data.</p>
 </div>
-<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gutter">
 <!-- Project 1: Entropy -->
 <div class="glass-panel flex flex-col group hover:border-primary/40 transition-all duration-300 cursor-pointer" onclick="window.location.href='entropy.html'">
 <div class="relative h-48 overflow-hidden">
@@ -254,14 +254,36 @@
 <h4 class="font-headline-md text-headline-md text-text-primary mb-stack-sm">NSE Option Strategy Analyzer</h4>
 <p class="font-body-sm text-on-surface-variant mb-stack-lg line-clamp-3">A Python tool that reads NSE options data, calculates implied volatility, analyses market conditions, and suggests options strategies based on a set of rules.</p>
 <div class="mb-stack-lg space-y-stack-sm">
-<p class="font-label-mono text-[10px] text-outline uppercase">Development Focus</p>
+<p class="font-label-mono text-[10px] text-outline uppercase">Key Result</p>
 <div class="flex flex-col items-start gap-2">
-<span class="font-headline-md text-tertiary">Current focus</span>
-<span class="text-body-sm text-on-surface-variant leading-relaxed">Improving strategy rules and backtesting</span>
+<span class="font-headline-md text-tertiary">30% win rate</span>
+<span class="text-body-sm text-on-surface-variant leading-relaxed">Positive expectancy, driven by two outlier trades</span>
 </div>
-<p class="font-body-sm text-on-surface-variant italic mb-stack-sm">Current suspect: strike selection and cost assumptions, not the market-view logic.</p>
+<p class="font-body-sm text-on-surface-variant italic mb-stack-sm">Disclosed transparently rather than smoothed over in the writeup.</p>
 </div>
 <div class="mt-auto pt-stack-md flex flex-wrap gap-2"><span class="px-2 py-1 border border-outline-variant rounded font-label-mono text-[10px] text-on-surface-variant">Python</span><span class="px-2 py-1 border border-outline-variant rounded font-label-mono text-[10px] text-on-surface-variant">Pandas</span><span class="px-2 py-1 border border-outline-variant rounded font-label-mono text-[10px] text-on-surface-variant">SciPy</span><span class="px-2 py-1 border border-outline-variant rounded font-label-mono text-[10px] text-on-surface-variant">Black-Scholes</span></div><div class="flex flex-wrap gap-3 mt-4"><a class="text-xs font-button text-primary hover:underline" href="https://github.com/Gautam-Kumaran/Option-Strategy-Analyzer" onclick="event.stopPropagation()" rel="noopener noreferrer" target="_blank">GitHub</a></div>
+</div>
+</div>
+<!-- Project 4: Factor Regression and Hedge Research -->
+<div class="glass-panel flex flex-col group hover:border-primary/40 transition-all duration-300 cursor-pointer" onclick="window.location.href='factor-hedge.html'">
+<div class="relative h-48 overflow-hidden">
+<div class="absolute inset-0 bg-primary/10 group-hover:bg-primary/5 transition-colors"></div>
+<div class="absolute inset-0 flex items-center justify-center">
+<span class="material-symbols-outlined text-5xl text-primary opacity-20 group-hover:opacity-40 transition-opacity">balance</span>
+</div>
+</div>
+<div class="p-stack-lg flex-grow flex flex-col">
+<h4 class="font-headline-md text-headline-md text-text-primary mb-stack-sm">Factor Regression and Hedge Research</h4>
+<p class="font-body-sm text-on-surface-variant mb-stack-lg line-clamp-3">A CAPM/factor-regression study on three NSE stocks against Nifty 50 and their sector indices, used to test whether a beta-sized Nifty futures position works as a hedge.</p>
+<div class="mb-stack-lg space-y-stack-sm">
+<p class="font-label-mono text-[10px] text-outline uppercase">Key Result</p>
+<div class="flex flex-col items-start gap-2">
+<span class="font-headline-md text-primary">Sector, not market, drives it</span>
+<span class="text-body-sm text-on-surface-variant leading-relaxed">Market beta is statistically zero for 2 of 3 stocks once sector is controlled for</span>
+</div>
+<p class="font-body-sm text-on-surface-variant italic mb-stack-sm">A full hedge cancels gains and losses together. It's a risk tool, not a strategy.</p>
+</div>
+<div class="mt-auto pt-stack-md flex flex-wrap gap-2"><span class="px-2 py-1 border border-outline-variant rounded font-label-mono text-[10px] text-on-surface-variant">Python</span><span class="px-2 py-1 border border-outline-variant rounded font-label-mono text-[10px] text-on-surface-variant">NumPy</span><span class="px-2 py-1 border border-outline-variant rounded font-label-mono text-[10px] text-on-surface-variant">Fyers API</span><span class="px-2 py-1 border border-outline-variant rounded font-label-mono text-[10px] text-on-surface-variant">OLS from scratch</span></div><div class="flex flex-wrap gap-3 mt-4"><a class="text-xs font-button text-primary hover:underline" href="https://github.com/Gautam-Kumaran/Regression-and-Hedge-research" onclick="event.stopPropagation()" rel="noopener noreferrer" target="_blank">GitHub</a></div>
 </div>
 </div>
 </div>
