@@ -1,7 +1,7 @@
 /* Tiny client-side blog engine. No build step: it reads posts/*.md straight from your repo. */
 const BLOG = (() => {
   // Leave repo blank to auto-detect on github.io. If you use a custom domain, set it: "Gautam-Kumaran/your-repo-name"
-  const CONFIG = { repo: "", dir: "posts" };
+  const CONFIG = { repo: "Gautam-Kumaran/Personal-Website", dir: "posts" };
   const MONTHS = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
   const FILE = /^(\d{4})-(\d{2})-(\d{2})-?(.*)\.md$/i;
 
