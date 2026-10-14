@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&family=Inter:wght@400;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script src="assets/theme.js"></script>
+<link href="assets/blog.css" rel="stylesheet"/>
+<script src="https://cdn.jsdelivr.net/npm/marked@12.0.2/marked.min.js"></script>
+<script src="assets/blog.js"></script>
+<title>Post | Gautam Kumaran</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+</head>
+<body class="font-body-md bg-background text-on-background selection:bg-primary/30">
+<nav class="fixed top-0 w-full z-50 bg-primary-container/80 backdrop-blur-md border-b border-outline-variant/20">
+<div class="max-w-container-max mx-auto px-gutter flex items-center h-16 justify-end">
+<div class="flex items-center gap-5 md:gap-stack-lg font-label-mono text-label-mono">
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="index.html#home">Home</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="index.html#projects">Projects</a>
+<a class="text-primary border-b border-primary pb-1" href="blog.html">Blog</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="index.html#contact">Contact</a>
+</div></div></nav>
+<main class="pt-16">
+<article class="max-w-3xl mx-auto px-gutter py-stack-xl">
+<a class="font-label-mono text-label-mono text-on-surface-variant hover:text-primary transition-colors inline-flex items-center gap-1" href="blog.html"><span class="material-symbols-outlined text-base">arrow_back</span> All posts</a>
+<header class="mt-stack-lg mb-stack-xl space-y-stack-md">
+<p id="meta" class="font-label-mono text-label-mono text-primary uppercase tracking-[0.15em]">&nbsp;</p>
+<h1 id="title" class="font-headline-xl text-headline-xl-mobile md:text-headline-xl text-text-primary"></h1>
+<div id="tags" class="flex flex-wrap gap-2"></div>
+</header>
+<div id="body" class="post-body"><p>Loading…</p></div>
+<nav id="pn" class="mt-stack-xl pt-stack-lg border-t border-outline-variant/30 grid sm:grid-cols-2 gap-gutter"></nav>
+</article>
+</main>
+<footer class="bg-primary-container w-full py-stack-xl border-t border-outline-variant/20">
+<div class="max-w-container-max mx-auto px-gutter flex flex-col md:flex-row items-center gap-stack-md justify-center">
+<span class="font-label-mono text-label-mono uppercase tracking-widest text-text-primary">Gautam Kumaran</span>
+<span class="hidden md:block w-px h-4 bg-outline-variant/30"></span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">© 2026 Gautam Kumaran</p>
+</div></footer>
+<script>
+(async () => {
+  const slug = new URLSearchParams(location.search).get("p");
+  if (!slug) return location.replace("blog.html");
+  const $ = id => document.getElementById(id), name = slug + ".md";
+  try {
+    const p = BLOG.parse(await BLOG.fetchRaw(name), name);
+    document.title = p.title + " | Gautam Kumaran";
+    $("meta").textContent = p.date + " · " + p.reading + " min read";
+    $("title").textContent = p.title;
+    $("tags").innerHTML = p.tags.map(t => '<span class="tag-chip">' + BLOG.esc(t) + '</span>').join("");
+    $("body").innerHTML = BLOG.toHtml(p.body);
+    $("body").querySelectorAll("pre code").forEach(el => hljs.highlightElement(el));
+    renderMathInElement($("body"), { delimiters: [{left:"$$",right:"$$",display:true},{left:"$",right:"$",display:false}], ignoredTags: ["script","style","textarea","pre","code"] });
+  } catch (e) { $("title").textContent = "Post not found"; $("body").innerHTML = ""; return; }
+  try {   // older / newer links
+    const names = await BLOG.listFiles(), i = names.indexOf(name);
+    const link = (n, label, cls) => n ? '<a href="post.html?p=' + encodeURIComponent(BLOG.slugOf(n)) + '" class="glass-panel rounded-xl p-stack-md block hover:border-primary/40 transition-all ' + cls + '"><p class="font-label-mono text-[10px] text-outline uppercase mb-1">' + label + '</p><p class="font-headline-md text-base text-text-primary">' + BLOG.esc(BLOG.titleFromName(n)) + '</p></a>' : '<div></div>';
+    $("pn").innerHTML = link(names[i+1], "← Older", "") + link(names[i-1], "Newer →", "sm:text-right");
+  } catch {}
+})();
+</script>
+</body></html>

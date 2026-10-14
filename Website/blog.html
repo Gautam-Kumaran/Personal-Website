@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&family=Inter:wght@400;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script src="assets/theme.js"></script>
+<link href="assets/blog.css" rel="stylesheet"/>
+<script src="https://cdn.jsdelivr.net/npm/marked@12.0.2/marked.min.js"></script>
+<script src="assets/blog.js"></script>
+<title>Blog | Gautam Kumaran</title>
+</head>
+<body class="font-body-md bg-background text-on-background selection:bg-primary/30">
+<nav class="fixed top-0 w-full z-50 bg-primary-container/80 backdrop-blur-md border-b border-outline-variant/20">
+<div class="max-w-container-max mx-auto px-gutter flex items-center h-16 justify-end">
+<div class="flex items-center gap-5 md:gap-stack-lg font-label-mono text-label-mono">
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="index.html#home">Home</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="index.html#projects">Projects</a>
+<a class="text-primary border-b border-primary pb-1" href="blog.html">Blog</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="index.html#contact">Contact</a>
+</div></div></nav>
+<main class="pt-16">
+<section class="max-w-container-max mx-auto px-gutter py-stack-xl">
+<div class="space-y-stack-sm mb-stack-xl">
+<span class="font-label-mono text-label-mono text-primary uppercase tracking-[0.2em]">Daily Blog</span>
+<h1 class="font-headline-xl text-headline-xl-mobile md:text-headline-xl text-text-primary">Notes</h1>
+<p class="font-body-lg text-on-surface-variant max-w-xl">One thing a day on markets, data, and building things.</p>
+</div>
+<input id="q" type="search" placeholder="Search posts..." class="w-full md:w-96 mb-stack-lg bg-surface-container border border-outline-variant rounded-lg px-4 py-3 text-body-sm text-on-surface placeholder:text-outline focus:border-primary focus:ring-0"/>
+<div id="list" class="grid gap-gutter max-w-3xl"></div>
+<p id="status" class="text-on-surface-variant font-body-md">Loading…</p>
+<button id="more" class="hidden mt-stack-lg px-stack-lg py-3 border border-outline-variant text-text-primary font-button text-button rounded-lg hover:bg-white/5 transition-colors">Show older posts</button>
+</section>
+</main>
+<footer class="bg-primary-container w-full py-stack-xl border-t border-outline-variant/20">
+<div class="max-w-container-max mx-auto px-gutter flex flex-col md:flex-row items-center gap-stack-md justify-center">
+<span class="font-label-mono text-label-mono uppercase tracking-widest text-text-primary">Gautam Kumaran</span>
+<span class="hidden md:block w-px h-4 bg-outline-variant/30"></span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">© 2026 Gautam Kumaran</p>
+</div></footer>
+<script>
+const PAGE = 12, $ = id => document.getElementById(id);
+let names = [], posts = {}, shown = PAGE, q = "", all = false;
+
+async function ensure(list) {
+  const need = list.filter(n => !posts[n]);
+  (await BLOG.load(need)).forEach(p => posts[p.name] = p);
+}
+function render() {
+  const s = q.toLowerCase();
+  const rows = names.map(n => posts[n]).filter(p => p && (!s || (p.title + p.summary + p.tags.join(" ")).toLowerCase().includes(s)));
+  $("list").innerHTML = rows.slice(0, shown).map(BLOG.card).join("");
+  $("status").textContent = rows.length ? "" : (names.length ? "No matches." : "No posts yet.");
+  $("more").classList.toggle("hidden", rows.length <= shown);
+}
+(async () => {
+  try {
+    names = await BLOG.listFiles();
+    await ensure(names.slice(0, shown)); render();
+  } catch (e) { $("status").textContent = "Couldn't load posts. " + e.message; }
+})();
+$("more").onclick = async () => { shown += PAGE; await ensure(names.slice(0, shown)); render(); };
+$("q").oninput = async e => {
+  q = e.target.value;
+  if (q && !all) { all = true; await ensure(names); }   // search needs every post loaded
+  shown = PAGE; render();
+};
+</script>
+</body></html>

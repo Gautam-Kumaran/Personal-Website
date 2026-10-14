@@ -139,14 +139,12 @@
 <!-- Top Navigation -->
 <nav class="fixed top-0 w-full z-50 bg-primary-container/80 backdrop-blur-md border-b border-outline-variant/20">
 <div class="max-w-container-max mx-auto px-gutter flex items-center h-16 justify-end">
-<div class="hidden md:flex items-center gap-stack-lg font-label-mono text-label-mono">
+<div class="flex items-center gap-5 md:gap-stack-lg font-label-mono text-label-mono">
 <a class="text-primary border-b border-primary pb-1 transition-all duration-200" href="#home">Home</a>
 <a class="text-on-surface-variant hover:text-primary transition-colors" href="#projects">Projects</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="blog.html">Blog</a>
 <a class="text-on-surface-variant hover:text-primary transition-colors" href="#contact">Contact</a>
 </div>
-<button class="md:hidden text-primary">
-<span class="material-symbols-outlined">menu</span>
-</button>
 </div>
 </nav>
 <main class="pt-16">
@@ -289,6 +287,19 @@
 </div>
 </div>
 </section>
+<!-- Latest Blog Posts (filled in automatically) -->
+<section class="py-stack-xl border-t border-outline-variant/10" id="blog">
+<div class="max-w-container-max mx-auto px-gutter">
+<div class="flex justify-between items-end mb-stack-lg gap-stack-md">
+<div class="space-y-stack-sm">
+<span class="font-label-mono text-label-mono text-primary uppercase">Daily Blog</span>
+<h3 class="font-headline-lg text-headline-lg text-text-primary">Latest Notes</h3>
+</div>
+<a class="font-label-mono text-label-mono text-primary hover:underline" href="blog.html">All posts →</a>
+</div>
+<div id="latest-posts" class="grid grid-cols-1 md:grid-cols-3 gap-gutter"></div>
+</div>
+</section>
 <!-- Technical Details Section -->
 <section class="py-stack-xl border-t border-outline-variant/10">
 <div class="max-w-container-max mx-auto px-gutter">
@@ -419,4 +430,16 @@
             });
         });
     </script>
+<script src="https://cdn.jsdelivr.net/npm/marked@12.0.2/marked.min.js"></script>
+<script src="assets/blog.js"></script>
+<script>
+(async () => {
+  try {
+    const names = (await BLOG.listFiles()).slice(0, 3);
+    const posts = await BLOG.load(names);
+    if (!posts.length) throw 0;
+    document.getElementById("latest-posts").innerHTML = posts.map(BLOG.card).join("");
+  } catch { document.getElementById("blog").style.display = "none"; }
+})();
+</script>
 </body></html>

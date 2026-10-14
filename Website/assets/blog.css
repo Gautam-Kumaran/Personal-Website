@@ -1,0 +1,30 @@
+body { background-color:#131315; color:#e4e2e4; scroll-behavior:smooth; }
+.material-symbols-outlined { font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24; }
+.glass-panel { background:rgba(10,25,47,.7); backdrop-filter:blur(12px); border:1px solid rgba(68,71,77,.3); }
+
+/* Article typography */
+.post-body { font-family:'Inter',sans-serif; font-size:17px; line-height:1.75; color:#d6d6da; }
+.post-body > * + * { margin-top:1.25em; }
+.post-body h2 { font-family:'Outfit',sans-serif; font-size:1.7rem; font-weight:600; color:#fff; margin-top:2.2em; line-height:1.25; }
+.post-body h3 { font-family:'Outfit',sans-serif; font-size:1.3rem; font-weight:600; color:#fff; margin-top:1.8em; }
+.post-body h4 { font-weight:600; color:#fff; }
+.post-body a { color:#b9c7e4; text-decoration:underline; text-underline-offset:3px; }
+.post-body a:hover { color:#fff; }
+.post-body strong { color:#fff; font-weight:600; }
+.post-body ul { list-style:disc; padding-left:1.4em; }
+.post-body ol { list-style:decimal; padding-left:1.4em; }
+.post-body li + li { margin-top:.4em; }
+.post-body blockquote { border-left:3px solid #b9c7e4; padding:.2em 0 .2em 1.1em; color:#94A3B8; font-style:italic; }
+.post-body hr { border:0; border-top:1px solid rgba(68,71,77,.5); margin:2.5em 0; }
+.post-body img { max-width:100%; height:auto; border-radius:.5rem; border:1px solid rgba(68,71,77,.4); margin-inline:auto; }
+.post-body code { font-family:'JetBrains Mono',monospace; font-size:.88em; background:#1f1f21; padding:.15em .4em; border-radius:.25rem; color:#e7bf99; }
+.post-body pre { background:#0e0e10; border:1px solid rgba(68,71,77,.5); border-radius:.5rem; padding:1rem 1.2rem; overflow-x:auto; line-height:1.55; }
+.post-body pre code { background:none; padding:0; color:inherit; font-size:.85rem; }
+.post-body table { width:100%; border-collapse:collapse; font-size:.95rem; display:block; overflow-x:auto; }
+.post-body th, .post-body td { border:1px solid rgba(68,71,77,.5); padding:.55em .8em; text-align:left; }
+.post-body th { background:#1f1f21; color:#fff; font-weight:600; }
+.post-body .katex-display { overflow-x:auto; overflow-y:hidden; padding:.3em 0; }
+.post-body .footnote { font-size:.9rem; color:#94A3B8; }
+.hljs { background:transparent !important; padding:0 !important; }
+.tag-chip { font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.04em; padding:.25rem .6rem; border:1px solid #44474d; border-radius:.25rem; color:#c5c6cd; transition:all .15s; }
+.tag-chip:hover, .tag-chip.active { border-color:#b9c7e4; color:#b9c7e4; background:rgba(185,199,228,.08); }
